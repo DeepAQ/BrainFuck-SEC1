@@ -3,6 +3,7 @@ package httpSrv;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import serviceImpl.ExecuteServiceImpl;
+import ui.LogUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,6 +15,7 @@ public class ExecuteHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
+        LogUtils.log("D", "ExecuteHandler", "New /io/execute request with query " + query);
         //System.out.println(query);
         String code = "";
         String input = "";
@@ -33,7 +35,7 @@ public class ExecuteHandler implements HttpHandler {
         if (!code.isEmpty()) {
             response = new ExecuteServiceImpl().execute(code, input);
         }
-        //System.out.println(response);
+        LogUtils.log("D", "ExecuteHandler", "Respond with result \"" + response + "\"");
         httpExchange.sendResponseHeaders(200, response.length());
         httpExchange.getResponseHeaders().add("Content-type", "text/plain");
         OutputStream os = httpExchange.getResponseBody();

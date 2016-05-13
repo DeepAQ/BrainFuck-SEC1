@@ -1,6 +1,7 @@
 package httpSrv;
 
 import com.sun.net.httpserver.HttpServer;
+import ui.LogUtils;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -27,9 +28,11 @@ public class HttpService {
         httpServer.setExecutor(executor);
         httpServer.createContext("/io/execute", new ExecuteHandler());
         httpServer.start();
+        LogUtils.log("I", "HttpService", "HTTP service started, listening on port " + this.port);
     }
 
     public void stop() {
         httpServer.stop(0);
+        LogUtils.log("I", "HttpService", "HTTP service stopped");
     }
 }
