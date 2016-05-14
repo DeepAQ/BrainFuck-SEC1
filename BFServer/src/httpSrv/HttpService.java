@@ -20,7 +20,7 @@ public class HttpService {
         this.port = port;
     }
 
-    public void start() throws IOException {
+    public void start() throws Exception {
         //create thread pool
         executor = Executors.newCachedThreadPool();
         //setup HTTP server

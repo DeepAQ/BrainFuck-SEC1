@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -26,6 +26,8 @@
                         <TextField fx:id="inputPort" layoutX="95.0" layoutY="5.0" prefHeight="23.0" prefWidth="70.0" promptText="port" text="8081" />
                         <Label layoutX="10.0" layoutY="9.0" text="Listening port" />
                         <ToggleButton fx:id="btnStartStop" layoutX="175.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#onStartStopClicked" prefHeight="23.0" prefWidth="60.0" text="Start" />
+                        <Label layoutX="250.0" layoutY="9.0" text="Log level" />
+                        <ChoiceBox fx:id="choiceLogLevel" layoutX="305.0" layoutY="5.0" />
                      </children>
                   </AnchorPane>
             </content>

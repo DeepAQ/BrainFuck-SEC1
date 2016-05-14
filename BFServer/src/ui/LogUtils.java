@@ -3,18 +3,31 @@ package ui;
 import javafx.scene.control.TextArea;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Created by adn55 on 16/5/14.
  */
 public class LogUtils {
-    public static TextArea logArea;
+    private static TextArea logArea;
+    private static String[] logLevels = new String[]{"D", "I", "W", "E"};
+    private static int logLevel = 0;
+
+    public static void setLogArea(TextArea textArea) {
+        logArea = textArea;
+    }
+
+    public static void setLogLevel(int level) {
+        logLevel = level;
+    }
 
     public static void log(String type, String tag, String logs) {
-        String logText = "";
-        logText += new SimpleDateFormat("[yy/MM/dd HH:mm:ss.SSS] ").format(new Date());
-        logText += type + "/" + tag + ": " + logs + System.getProperty("line.separator");
-        logArea.appendText(logText);
+        if (Arrays.asList(logLevels).indexOf(type) >= logLevel) {
+            String logText = "";
+            logText += new SimpleDateFormat("[yy/MM/dd HH:mm:ss.SSS] ").format(new Date());
+            logText += type + "/" + tag + ": " + logs + System.getProperty("line.separator");
+            logArea.appendText(logText);
+        }
     }
 }

@@ -2,10 +2,14 @@ package ui;
 
 import httpSrv.HttpService;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -27,9 +31,25 @@ public class MainUI extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("BrainFuck Server");
         primaryStage.setScene(new Scene(root, 600, 400));
-        LogUtils.logArea = this.textLogs;
+        LogUtils.setLogArea(this.textLogs);
         primaryStage.show();
+
+        choiceLogLevel.setItems(FXCollections.observableArrayList("Debug", "Info", "Warning", "Error"));
+        choiceLogLevel.getSelectionModel().select(0);
+        choiceLogLevel.getSelectionModel().selectedIndexProperty().addListener(
+                new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                        LogUtils.setLogLevel((int) newValue);
+                    }
+                }
+        );
         webView.getEngine().load(getClass().getResource("ServerDebugger.html").toString());
+    }
+
+    @Override
+    public void stop() throws Exception {
+        System.exit(0);
     }
 
     private HttpService mainService;
@@ -40,6 +60,8 @@ public class MainUI extends Application {
     private TextField inputPort;
     @FXML
     private TextArea textLogs;
+    @FXML
+    private ChoiceBox choiceLogLevel;
     @FXML
     private WebView webView;
 
@@ -56,7 +78,6 @@ public class MainUI extends Application {
             try {
                 port = Integer.parseInt(inputPort.getText());
             } catch (Exception e) {
-                //TODO:
                 return;
             }
             mainService = new HttpService(port);
@@ -64,7 +85,8 @@ public class MainUI extends Application {
                 mainService.start();
             } catch (Exception e) {
                 e.printStackTrace();
-                //TODO:
+                LogUtils.log("E", "HttpService", e.toString());
+                LogUtils.log("E", "HttpService", "HTTP service cannot start!");
                 return;
             }
             btnStartStop.setSelected(true);
