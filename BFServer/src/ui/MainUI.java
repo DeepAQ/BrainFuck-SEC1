@@ -31,8 +31,12 @@ public class MainUI extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("BrainFuck Server");
         primaryStage.setScene(new Scene(root, 600, 400));
-        LogUtils.setLogArea(this.textLogs);
+        this.setup();
         primaryStage.show();
+    }
+
+    private void setup() {
+        LogUtils.init(this.textLogs);
 
         choiceLogLevel.setItems(FXCollections.observableArrayList("Debug", "Info", "Warning", "Error"));
         choiceLogLevel.getSelectionModel().select(0);
@@ -44,6 +48,7 @@ public class MainUI extends Application {
                     }
                 }
         );
+
         webView.getEngine().load(getClass().getResource("ServerDebugger.html").toString());
     }
 

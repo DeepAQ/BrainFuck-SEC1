@@ -1,9 +1,13 @@
-.menu-bar, .context-menu, .tab, .tab-header-background, .tab-content-area, .text-area {
+.tab-pane, .menu-bar, .context-menu, .tab, .tab-header-background, .tab-content-area, .text-area {
     -fx-background-color: #3c3f41;
 }
 
-.tab :selected {
+.tab:selected {
     -fx-background-color: #515658;
+}
+
+.split-pane-divider {
+    -fx-background-color: #555555;
 }
 
 .label, .tab-label {

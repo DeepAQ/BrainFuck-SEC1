@@ -14,7 +14,7 @@ public class LogUtils {
     private static String[] logLevels = new String[]{"D", "I", "W", "E"};
     private static int logLevel = 0;
 
-    public static void setLogArea(TextArea textArea) {
+    public static void init(TextArea textArea) {
         logArea = textArea;
     }
 

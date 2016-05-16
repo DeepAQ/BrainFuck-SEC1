@@ -1,0 +1,27 @@
+.tab-pane, .menu-bar, .context-menu, .tab, .tab-header-background, .tab-content-area, .text-area {
+    -fx-background-color: #000000;
+}
+
+.tab:selected {
+    -fx-background-color: #ffffff;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #000000;
+}
+
+.split-pane-divider {
+    -fx-background-color: #333333;
+}
+
+.label, {
+    -fx-text-fill: #cccccc;
+}
+
+.text-area {
+    -fx-text-fill: #ffffff;
+}
+
+.text-area .content {
+    -fx-background-color: #000000;
+}
