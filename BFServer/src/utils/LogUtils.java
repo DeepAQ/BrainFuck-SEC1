@@ -1,4 +1,4 @@
-package ui;
+package utils;
 
 import javafx.scene.control.TextArea;
 
@@ -29,5 +29,10 @@ public class LogUtils {
             logText += type + "/" + tag + ": " + logs + System.getProperty("line.separator");
             logArea.appendText(logText);
         }
+    }
+
+    public static void logE(Exception e) {
+        log("E", e.getClass().getName(), e.getLocalizedMessage());
+        e.printStackTrace();
     }
 }

@@ -1,43 +1,30 @@
 package ui;
 
-import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
  * Created by adn55 on 16/5/14.
  */
-public class MainUI extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
+public class MainUI extends Stage {
+    public Scene scene;
 
-    private Scene scene;
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public MainUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/MainUI.fxml"));
         loader.setController(this);
-        Parent root = loader.load();
-        primaryStage.setTitle("BrainFuck IDE");
-        scene = new Scene(root, 1024, 768);
-        primaryStage.setScene(scene);
+        BorderPane root = loader.load();
+        this.scene = new Scene(root, 1024, 600);
+        this.setScene(this.scene);
+        this.setTitle("BrainFuck IDE");
         this.setup();
-        primaryStage.show();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        System.exit(0);
-        super.stop();
     }
 
     private int untitled = 0;
@@ -70,7 +57,7 @@ public class MainUI extends Application {
     //   Exit
     @FXML
     protected void onFileExitAction(ActionEvent t) throws Exception {
-        stop();
+        Platform.exit();
     }
 
     // View

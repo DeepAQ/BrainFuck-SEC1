@@ -1,9 +1,8 @@
-package httpSrv;
+package serviceImpl;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import serviceImpl.ExecuteServiceImpl;
-import ui.LogUtils;
+import utils.LogUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,7 +15,6 @@ public class ExecuteHandler implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
         LogUtils.log("D", "ExecuteHandler", "New /io/execute request with query " + query);
-        //System.out.println(query);
         String code = "";
         String input = "";
         if (query != null) {
