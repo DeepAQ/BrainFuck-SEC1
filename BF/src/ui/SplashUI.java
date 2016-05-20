@@ -21,4 +21,5 @@ public class SplashUI extends Stage {
         this.setTitle("BrainFuck IDE");
         this.initStyle(StageStyle.TRANSPARENT);
     }
+
 }

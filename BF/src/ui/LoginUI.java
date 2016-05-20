@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import utils.DataMgr;
 import utils.SessionMgr;
 
 /**
@@ -65,6 +66,9 @@ public class LoginUI extends Stage {
         if (username.isEmpty() || password.isEmpty()) return;
         try {
             SessionMgr.login(username, password);
+            if (checkRemember.isSelected()) {
+                SessionMgr.saveLoginInfo(username, password);
+            }
             this.close();
             loginSuccessHandler.onLoginSuccess();
         } catch (Exception e) {

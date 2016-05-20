@@ -20,7 +20,11 @@ public class SessionMgr {
     public static String sessionId = "";
 
     public static void login(String username, String password) throws Exception {
-        String serverResp = getURL(host + "/user/login?username=" + username + "&pwdhash=" + hash(password));
+        loginWithPwdhash(username, hash(password));
+    }
+
+    public static void loginWithPwdhash(String username, String pwdhash) throws Exception {
+        String serverResp = getURL(host + "/user/login?username=" + username + "&pwdhash=" + pwdhash);
         JSONObject tmpObj = (JSONObject) new JSONTokener(serverResp).nextValue();
         int result = tmpObj.getInt("result");
         if (result < 0) {
@@ -33,6 +37,24 @@ public class SessionMgr {
 
     public static void logout() {
         sessionId = "";
+    }
+
+    public static void saveLoginInfo(String username, String password) {
+        DataMgr.data.username = username;
+        DataMgr.data.pwdhash = hash(password);
+        DataMgr.saveToFile();
+    }
+
+    public static boolean tryAutoLogin() {
+        String username = DataMgr.data.username;
+        String pwdhash = DataMgr.data.pwdhash;
+        if (username.isEmpty() || pwdhash.isEmpty()) return false;
+        try {
+            loginWithPwdhash(username, pwdhash);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static String getURL(String url) throws IOException {

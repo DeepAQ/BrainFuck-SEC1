@@ -1,10 +1,14 @@
 package runner;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import ui.LoginUI;
 import ui.MainUI;
 import ui.SplashUI;
+import utils.DataMgr;
 import utils.SessionMgr;
 
 /**
@@ -19,35 +23,51 @@ public class ClientRunner extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Setup the application
+        setup();
         // Show splash screen
-        try {
-            mainStage = new SplashUI();
-            setup();
-            mainStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // Check user login state
-        if (SessionMgr.sessionId.isEmpty()) {
+        mainStage = new SplashUI();
+        mainStage.show();
+        // Try auto login
+        if (!SessionMgr.tryAutoLogin()) {
             LoginUI loginStage = new LoginUI();
             loginStage.setLoginSuccessHandler(new LoginUI.LoginSuccessHandler() {
                 @Override
                 public void onLoginSuccess() {
-                    try {
-                        mainStage.close();
-                        mainStage = new MainUI();
-                        mainStage.show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    showMainStage();
                 }
             });
             loginStage.show();
+        } else {
+            showMainStage();
         }
     }
 
-    public void setup() {
+    private void showMainStage() {
+        Task delayTask = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                Thread.sleep(1000);
+                return null;
+            }
+        };
+        delayTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                try {
+                    mainStage.close();
+                    mainStage = new MainUI();
+                    mainStage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        new Thread(delayTask).start();
+    }
 
+    public void setup() {
+        DataMgr.loadFromFile();
     }
 
     @Override
