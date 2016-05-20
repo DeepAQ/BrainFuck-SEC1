@@ -1,6 +1,8 @@
 package ui;
 
-import javafx.scene.layout.BorderPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import service.HttpService;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,12 +19,16 @@ import utils.LogUtils;
 /**
  * Created by adn55 on 16/5/13.
  */
-public class MainUI extends BorderPane {
+public class MainUI extends Stage {
+    public Scene scene;
+
     public MainUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUI.fxml"));
-        loader.setRoot(this);
         loader.setController(this);
-        loader.load();
+        Parent root = loader.load();
+        scene = new Scene(root, 600, 450);
+        this.setScene(scene);
+        this.setTitle("BrainFuck Server");
         this.setup();
     }
 

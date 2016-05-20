@@ -1,7 +1,6 @@
 package runner;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.MainUI;
 import utils.DataMgr;
@@ -14,13 +13,9 @@ public class ServerRunner extends Application {
         launch(args);
     }
 
-    MainUI mainUI;
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("BrainFuck Server");
-        mainUI = new MainUI();
-        primaryStage.setScene(new Scene(mainUI, 600, 400));
+        primaryStage = new MainUI();
         setup();
         primaryStage.show();
     }

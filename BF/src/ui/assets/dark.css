@@ -3,7 +3,7 @@
 }
 
 .tab:selected {
-    -fx-background-color: #515658;
+    -fx-background-color: #555555;
 }
 
 .split-pane-divider {

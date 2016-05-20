@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #333333;">
+         <children>
+            <Label alignment="CENTER" layoutX="48.0" layoutY="14.0" text="Welcome to BrainFuck IDE" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="28.0" layoutY="84.0" text="Username :" />
+      <TextField fx:id="inputUsername" layoutX="103.0" layoutY="80.0" prefWidth="250.0" promptText="Username" />
+      <Label layoutX="32.0" layoutY="117.0" text="Password :" />
+      <PasswordField fx:id="inputPassword" layoutX="103.0" layoutY="113.0" prefWidth="250.0" promptText="Password" />
+      <CheckBox fx:id="checkRemember" layoutX="103.0" layoutY="147.0" mnemonicParsing="false" text="Remember me" />
+      <Button fx:id="btnLogin" layoutX="304.0" layoutY="143.0" mnemonicParsing="false" onAction="#onLoginAction" text="Login" />
+      <Label fx:id="labelStatus" layoutX="103.0" layoutY="176.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

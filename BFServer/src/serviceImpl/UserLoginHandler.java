@@ -18,42 +18,44 @@ public class UserLoginHandler implements HttpHandler {
         String query = httpExchange.getRequestURI().getQuery();
         LogUtils.log("D", "UserLoginHandler", "New /user/login request with query " + query);
         String username = "";
-        String password = "";
+        String pwdhash = "";
         if (query != null) {
             for (String param : query.split("&")) {
                 String pair[] = param.split("=");
                 if (pair.length > 1) {
                     if (pair[0].equals("username")) {
                         username = pair[1];
-                    } else if (pair[0].equals("password")) {
-                        password = pair[1];
+                    } else if (pair[0].equals("pwdhash")) {
+                        pwdhash = pair[1];
                     }
                 }
             }
         }
-        int result = UserMgr.checkLogin(username, password);
-        System.out.println(result);
+        int result = UserMgr.checkLogin(username, pwdhash);
         JSONStringer json = new JSONStringer();
         json.object();
         json.key("result").value(result);
         if (result >= 0) {
             //login success
-            json.key("sessionid").value(UserMgr.newSessionId(username));
+            String sessionId = UserMgr.newSessionId(username);
+            json.key("sessid").value(sessionId);
+            LogUtils.log("D", "UserLoginHandler", username + " login successful, sessionId is " + sessionId);
         } else {
             //login failed
             String errorMsg;
             switch (result) {
                 case UserMgr.RESULT_USER_NOEXIST:
-                    errorMsg = "user_no_exist";
+                    errorMsg = "User does not exist";
                     break;
                 case UserMgr.RESULT_PASSWORD_INCORRECT:
-                    errorMsg = "password_incorrect";
+                    errorMsg = "Password incorrect";
                     break;
                 default:
-                    errorMsg = "system_error";
+                    errorMsg = "Server error";
                     break;
             }
-            json.key("error_msg").value(errorMsg);
+            json.key("errmsg").value(errorMsg);
+            LogUtils.log("D", "UserLoginHandler", username + " login failed: " + errorMsg);
         }
         json.endObject();
         String response = json.toString();

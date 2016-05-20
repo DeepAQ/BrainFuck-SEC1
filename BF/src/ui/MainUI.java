@@ -4,11 +4,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -20,10 +21,11 @@ public class MainUI extends Stage {
     public MainUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/MainUI.fxml"));
         loader.setController(this);
-        BorderPane root = loader.load();
+        Parent root = loader.load();
         this.scene = new Scene(root, 1024, 600);
         this.setScene(this.scene);
         this.setTitle("BrainFuck IDE");
+        this.getIcons().add(new Image(getClass().getResourceAsStream("assets/StageIcon.png")));
         this.setup();
     }
 
@@ -36,7 +38,7 @@ public class MainUI extends Stage {
     private void newTab() {
         untitled++;
         try {
-            Tab tmpTab = new Tab("Untitled" + untitled, new BFTab());
+            Tab tmpTab = new Tab("Untitled" + untitled + ".bf", new BFTab());
             tabPane.getTabs().add(tmpTab);
             tabPane.getSelectionModel().select(tmpTab);
         } catch (Exception e) {
