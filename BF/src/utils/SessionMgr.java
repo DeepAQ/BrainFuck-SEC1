@@ -3,14 +3,7 @@ package utils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import javax.net.ssl.HttpsURLConnection;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.security.MessageDigest;
+import java.net.URLEncoder;
 
 /**
  * Created by adn55 on 16/5/20.
@@ -19,19 +12,20 @@ public class SessionMgr {
     public static String host = "http://localhost:8081";
     public static String sessionId = "";
 
+    // User login & logout
+
     public static void login(String username, String password) throws Exception {
-        loginWithPwdhash(username, hash(password));
+        loginWithPwdhash(username, NetUtils.hash(password));
     }
 
     public static void loginWithPwdhash(String username, String pwdhash) throws Exception {
-        String serverResp = getURL(host + "/user/login?username=" + username + "&pwdhash=" + pwdhash);
-        JSONObject tmpObj = (JSONObject) new JSONTokener(serverResp).nextValue();
-        int result = tmpObj.getInt("result");
+        String serverResp = NetUtils.getURL(host + "/user/login?username=" + username + "&pwdhash=" + pwdhash);
+        JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
+        int result = jsonObj.getInt("result");
         if (result < 0) {
-            String errorMsg = tmpObj.getString("errmsg");
-            throw new Exception(errorMsg);
+            throw new Exception(jsonObj.getString("errmsg"));
         } else {
-            sessionId = tmpObj.getString("sessid");
+            sessionId = jsonObj.getString("sessid");
         }
     }
 
@@ -40,12 +34,14 @@ public class SessionMgr {
     }
 
     public static void saveLoginInfo(String username, String password) {
+        DataMgr.data.host = host;
         DataMgr.data.username = username;
-        DataMgr.data.pwdhash = hash(password);
+        DataMgr.data.pwdhash = NetUtils.hash(password);
         DataMgr.saveToFile();
     }
 
     public static boolean tryAutoLogin() {
+        host = DataMgr.data.host;
         String username = DataMgr.data.username;
         String pwdhash = DataMgr.data.pwdhash;
         if (username.isEmpty() || pwdhash.isEmpty()) return false;
@@ -57,48 +53,18 @@ public class SessionMgr {
         }
     }
 
-    public static String getURL(String url) throws IOException {
-        URLConnection _conn = new URL(url).openConnection();
-        _conn.setConnectTimeout(10000);
-        _conn.setReadTimeout(10000);
-        String resp;
-        if (_conn instanceof HttpsURLConnection) {
-            HttpsURLConnection conn = (HttpsURLConnection) _conn;
-            resp = getStringFromInputStream(conn.getInputStream());
-            conn.disconnect();
+    // Code execute
+
+    public static String execute(String code, String input) throws Exception {
+        String encCode = URLEncoder.encode(URLEncoder.encode(code, "utf-8"), "utf-8");
+        String encInput = URLEncoder.encode(URLEncoder.encode(input, "utf-8"), "utf-8");
+        String serverResp = NetUtils.getURL(host + "/io/execute?sessid=" + sessionId + "&code=" + encCode + "&input=" + encInput);
+        JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
+        if (jsonObj.getInt("result") < 0) {
+            throw new Exception(jsonObj.getString("errmsg"));
         } else {
-            HttpURLConnection conn = (HttpURLConnection) _conn;
-            resp = getStringFromInputStream(conn.getInputStream());
-            conn.disconnect();
+            return jsonObj.getString("output");
         }
-        return resp;
     }
 
-    public static String getStringFromInputStream(InputStream is) throws IOException {
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        int len;
-        while ((len = is.read(buffer)) != -1) {
-            os.write(buffer, 0, len);
-        }
-        is.close();
-        String state = os.toString();
-        os.close();
-        return state;
-    }
-
-    public static String hash(String str) {
-        MessageDigest digest;
-        try {
-            digest = MessageDigest.getInstance("SHA1");
-        } catch (Exception e) {
-            return "";
-        }
-        byte[] bytes = digest.digest(str.getBytes());
-        String result = "";
-        for (byte b : bytes) {
-            result = result + Integer.toString((b & 0xff) + 0x100, 16).substring(1);
-        }
-        return result;
-    }
 }

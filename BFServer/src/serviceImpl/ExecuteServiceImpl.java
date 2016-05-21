@@ -7,6 +7,7 @@ import java.util.Stack;
 import service.ExecuteService;
 
 public class ExecuteServiceImpl implements ExecuteService {
+    String errorMessage = "";
 	/**
 	 * 请实现该方法
 	 */
@@ -71,7 +72,8 @@ public class ExecuteServiceImpl implements ExecuteService {
             }
             codePtr++;
             if (System.currentTimeMillis() - startTime > 10000) {
-                return "Error: timeout";
+                errorMessage = "Timeout";
+                return null;
             }
         }
         return output;

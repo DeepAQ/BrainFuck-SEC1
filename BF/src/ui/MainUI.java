@@ -11,6 +11,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import utils.DataMgr;
+import utils.SessionMgr;
 
 /**
  * Created by adn55 on 16/5/14.
@@ -26,19 +28,19 @@ public class MainUI extends Stage {
         this.setScene(this.scene);
         this.setTitle("BrainFuck IDE");
         this.getIcons().add(new Image(getClass().getResourceAsStream("assets/StageIcon.png")));
-        this.setup();
+
+        if (!DataMgr.data.theme.isEmpty()) {
+            switchTheme(DataMgr.data.theme);
+        }
+        newTab();
     }
 
     private int untitled = 0;
 
-    private void setup() {
-        newTab();
-    }
-
     private void newTab() {
         untitled++;
         try {
-            Tab tmpTab = new Tab("Untitled" + untitled + ".bf", new BFTab());
+            Tab tmpTab = new BFTab("Untitled" + untitled, "");
             tabPane.getTabs().add(tmpTab);
             tabPane.getSelectionModel().select(tmpTab);
         } catch (Exception e) {
@@ -63,11 +65,18 @@ public class MainUI extends Stage {
     }
 
     // View
-
+    //   Theme
     @FXML
     protected void onViewThemeAction(ActionEvent t) {
+        String theme = ((RadioMenuItem) t.getSource()).getId();
+        switchTheme(theme);
+        DataMgr.data.theme = theme;
+        DataMgr.saveToFile();
+    }
+
+    private void switchTheme(String theme) {
         scene.getStylesheets().clear();
-        switch (((RadioMenuItem) t.getSource()).getId()) {
+        switch (theme) {
             case "styleDark":
                 scene.getStylesheets().add(getClass().getResource("assets/dark.css").toString());
                 break;
@@ -79,9 +88,18 @@ public class MainUI extends Stage {
     }
 
     // Run
-
     @FXML
     protected void onRunAction(ActionEvent t) {
-        System.out.println(tabPane.getSelectionModel().getSelectedItem().getText());
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        String code = currentTab.textCode.getText();
+        String input = currentTab.textInput.getText();
+        if (code.isEmpty()) return;
+        String output;
+        try {
+            output = SessionMgr.execute(code, input);
+        } catch (Exception e) {
+            output = "Execution error:\n" + e.getMessage();
+        }
+        currentTab.textOutput.setText(output);
     }
 }

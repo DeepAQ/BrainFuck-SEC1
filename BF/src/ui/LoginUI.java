@@ -12,7 +12,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
-import utils.DataMgr;
 import utils.SessionMgr;
 
 /**
@@ -30,22 +29,21 @@ public class LoginUI extends Stage {
         this.setTitle("Login");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
-        this.setup();
-    }
-
-    public void setLoginSuccessHandler(LoginSuccessHandler handler) {
-        this.loginSuccessHandler = handler;
-    }
-
-    private void setup() {
         this.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
                 Platform.exit();
             }
         });
+        inputUsername.requestFocus();
     }
 
+    public void setLoginSuccessHandler(LoginSuccessHandler handler) {
+        this.loginSuccessHandler = handler;
+    }
+
+    @FXML
+    private TextField inputServer;
     @FXML
     private TextField inputUsername;
     @FXML
@@ -65,6 +63,7 @@ public class LoginUI extends Stage {
         String password = inputPassword.getText();
         if (username.isEmpty() || password.isEmpty()) return;
         try {
+            SessionMgr.host = inputServer.getText();
             SessionMgr.login(username, password);
             if (checkRemember.isSelected()) {
                 SessionMgr.saveLoginInfo(username, password);

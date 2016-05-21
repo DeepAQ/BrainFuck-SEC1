@@ -60,7 +60,6 @@ public class UserLoginHandler implements HttpHandler {
         json.endObject();
         String response = json.toString();
         httpExchange.sendResponseHeaders(200, response.length());
-        httpExchange.getResponseHeaders().add("Content-type", "application/json");
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();

@@ -28,42 +28,46 @@ public class ClientRunner extends Application {
         // Show splash screen
         mainStage = new SplashUI();
         mainStage.show();
-        // Try auto login
-        if (!SessionMgr.tryAutoLogin()) {
-            LoginUI loginStage = new LoginUI();
-            loginStage.setLoginSuccessHandler(new LoginUI.LoginSuccessHandler() {
-                @Override
-                public void onLoginSuccess() {
-                    showMainStage();
-                }
-            });
-            loginStage.show();
-        } else {
-            showMainStage();
-        }
-    }
-
-    private void showMainStage() {
-        Task delayTask = new Task() {
+        Task delayedTask = new Task() {
             @Override
             protected Object call() throws Exception {
                 Thread.sleep(1000);
                 return null;
             }
         };
-        delayTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+        delayedTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
-                try {
-                    mainStage.close();
-                    mainStage = new MainUI();
-                    mainStage.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                // Try auto login
+                if (!SessionMgr.tryAutoLogin()) {
+                    try {
+                        LoginUI loginStage = new LoginUI();
+                        loginStage.setLoginSuccessHandler(new LoginUI.LoginSuccessHandler() {
+                            @Override
+                            public void onLoginSuccess() {
+                                showMainStage();
+                            }
+                        });
+                        loginStage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    showMainStage();
                 }
             }
         });
-        new Thread(delayTask).start();
+        new Thread(delayedTask).start();
+    }
+
+    private void showMainStage() {
+        try {
+            mainStage.close();
+            mainStage = new MainUI();
+            mainStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setup() {

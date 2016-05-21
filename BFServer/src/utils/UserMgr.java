@@ -12,7 +12,7 @@ public class UserMgr {
     public static final int RESULT_USER_NOEXIST = -3;
     public static final int RESULT_PASSWORD_INCORRECT = -4;
 
-    public static HashMap<String, String> sessionIds = new HashMap<>();
+    private static HashMap<String, String> sessionIds = new HashMap<>();
 
     public static String newSessionId(String username) {
         String sessionId = hash(System.currentTimeMillis() + "" + Math.random());
@@ -30,6 +30,10 @@ public class UserMgr {
         } else {
             return RESULT_USER_NOEXIST;
         }
+    }
+
+    public static String getUsernameBySessionId(String sessionId) {
+        return sessionIds.get(sessionId);
     }
 
     public static int addUser(String username, String password) {
