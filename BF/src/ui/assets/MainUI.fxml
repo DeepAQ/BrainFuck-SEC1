@@ -22,28 +22,28 @@
                                 <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Save">
+                        <MenuItem mnemonicParsing="false" onAction="#onFileSaveAction" text="Save">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Save As…">
+                        <MenuItem mnemonicParsing="false" onAction="#onFileSaveAsAction" text="Save As…">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Close">
+                        <MenuItem mnemonicParsing="false" onAction="#onFileCloseAction" text="Close">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Save All">
+                        <MenuItem mnemonicParsing="false" onAction="#onFileSaveAllAction" text="Save All">
                             <accelerator>
                                 <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Close All">
+                        <MenuItem mnemonicParsing="false" onAction="#onFileCloseAllAction" text="Close All">
                             <accelerator>
                                 <KeyCodeCombination alt="DOWN" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>

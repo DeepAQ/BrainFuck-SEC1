@@ -35,26 +35,18 @@ public class ClientRunner extends Application {
                 return null;
             }
         };
-        delayedTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                // Try auto login
-                if (!SessionMgr.tryAutoLogin()) {
-                    try {
-                        LoginUI loginStage = new LoginUI();
-                        loginStage.setLoginSuccessHandler(new LoginUI.LoginSuccessHandler() {
-                            @Override
-                            public void onLoginSuccess() {
-                                showMainStage();
-                            }
-                        });
-                        loginStage.show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    showMainStage();
+        delayedTask.setOnSucceeded(event -> {
+            // Try auto login
+            if (!SessionMgr.tryAutoLogin()) {
+                try {
+                    LoginUI loginStage = new LoginUI();
+                    loginStage.setLoginSuccessHandler(this::showMainStage);
+                    loginStage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            } else {
+                showMainStage();
             }
         });
         new Thread(delayedTask).start();

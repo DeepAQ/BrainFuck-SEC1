@@ -29,12 +29,7 @@ public class LoginUI extends Stage {
         this.setTitle("Login");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
-        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                Platform.exit();
-            }
-        });
+        this.setOnCloseRequest(event -> Platform.exit());
         inputUsername.requestFocus();
     }
 

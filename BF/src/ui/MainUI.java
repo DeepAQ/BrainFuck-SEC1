@@ -1,18 +1,21 @@
 package ui;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import utils.DataMgr;
 import utils.SessionMgr;
+
+import java.util.ArrayList;
 
 /**
  * Created by adn55 on 16/5/14.
@@ -40,7 +43,7 @@ public class MainUI extends Stage {
     private void newTab() {
         untitled++;
         try {
-            Tab tmpTab = new BFTab("Untitled" + untitled, "");
+            Tab tmpTab = new BFTab("" , Integer.toString(untitled));
             tabPane.getTabs().add(tmpTab);
             tabPane.getSelectionModel().select(tmpTab);
         } catch (Exception e) {
@@ -52,21 +55,58 @@ public class MainUI extends Stage {
     private TabPane tabPane;
 
     // File
-    //   New
-    @FXML
+    @FXML // New
     protected void onFileNewAction(ActionEvent t) {
         newTab();
     }
 
-    //   Exit
-    @FXML
+    @FXML // Save
+    protected void onFileSaveAction(ActionEvent t) {
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        currentTab.saveAction();
+    }
+
+    @FXML // Save as
+    protected void onFileSaveAsAction(ActionEvent t) {
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        currentTab.saveAsAction();
+    }
+
+    private void closeTab(Tab tab) {
+        Event event = new Event(EventType.ROOT);
+        tab.getOnCloseRequest().handle(event);
+        if (!event.isConsumed()) {
+            tabPane.getTabs().remove(tab);
+        }
+    }
+
+    @FXML // Close
+    protected void onFileCloseAction(ActionEvent t) {
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        closeTab(currentTab);
+    }
+
+    @FXML // Save All
+    protected void onFileSaveAllAction(ActionEvent t) {
+        for (Tab tab : tabPane.getTabs()) {
+            ((BFTab) tab).saveAction();
+        }
+    }
+
+    @FXML // Close All
+    protected void onFileCloseAllAction(ActionEvent t) {
+        ArrayList<Tab> tabs = new ArrayList<>();
+        tabs.addAll(tabPane.getTabs());
+        tabs.forEach(this::closeTab);
+    }
+
+    @FXML // Exit
     protected void onFileExitAction(ActionEvent t) throws Exception {
         Platform.exit();
     }
 
     // View
-    //   Theme
-    @FXML
+    @FXML // Theme
     protected void onViewThemeAction(ActionEvent t) {
         String theme = ((RadioMenuItem) t.getSource()).getId();
         switchTheme(theme);

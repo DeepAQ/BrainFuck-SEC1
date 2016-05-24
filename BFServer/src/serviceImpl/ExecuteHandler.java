@@ -26,7 +26,7 @@ public class ExecuteHandler implements HttpHandler {
                 String pair[] = param.split("=");
                 if (pair.length > 1) {
                     if (pair[0].equals("code")) {
-                        code = URLDecoder.decode(pair[1], "utf-8");
+                        code = pair[1];
                     } else if (pair[0].equals("input")) {
                         input = URLDecoder.decode(pair[1], "utf-8");
                     } else if (pair[0].equals("sessid")) {

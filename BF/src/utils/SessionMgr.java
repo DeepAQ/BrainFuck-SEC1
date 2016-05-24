@@ -53,12 +53,23 @@ public class SessionMgr {
         }
     }
 
+    // File I/O
+
+    public static String saveFile(String code, String filename) throws Exception {
+        String serverResp = NetUtils.getURL(host + "/io/save?sessid=" + sessionId + "&code=" + code + "&filename=" + filename);
+        JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
+        if (jsonObj.getInt("result") < 0) {
+            throw new Exception(jsonObj.getString("errmsg"));
+        } else {
+            return jsonObj.getString("version");
+        }
+    }
+
     // Code execute
 
     public static String execute(String code, String input) throws Exception {
-        String encCode = URLEncoder.encode(URLEncoder.encode(code, "utf-8"), "utf-8");
         String encInput = URLEncoder.encode(URLEncoder.encode(input, "utf-8"), "utf-8");
-        String serverResp = NetUtils.getURL(host + "/io/execute?sessid=" + sessionId + "&code=" + encCode + "&input=" + encInput);
+        String serverResp = NetUtils.getURL(host + "/io/execute?sessid=" + sessionId + "&code=" + code + "&input=" + encInput);
         JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
         if (jsonObj.getInt("result") < 0) {
             throw new Exception(jsonObj.getString("errmsg"));

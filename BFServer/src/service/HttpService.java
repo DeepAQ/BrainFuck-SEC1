@@ -2,6 +2,7 @@ package service;
 
 import com.sun.net.httpserver.HttpServer;
 import serviceImpl.ExecuteHandler;
+import serviceImpl.FileSaveHandler;
 import serviceImpl.UserLoginHandler;
 import utils.LogUtils;
 
@@ -28,8 +29,9 @@ public class HttpService {
         try {
             httpServer = HttpServer.create(new InetSocketAddress(this.port), 0);
             httpServer.setExecutor(executor);
-            httpServer.createContext("/io/execute", new ExecuteHandler());
             httpServer.createContext("/user/login", new UserLoginHandler());
+            httpServer.createContext("/io/save", new FileSaveHandler());
+            httpServer.createContext("/io/execute", new ExecuteHandler());
             httpServer.start();
             LogUtils.log("I", "HttpService", "HTTP service started, listening on port " + this.port);
             return true;
