@@ -106,7 +106,7 @@ public class MainUI extends Stage {
     }
 
     @FXML // Exit
-    protected void onFileExitAction(ActionEvent t) throws Exception {
+    protected void onFileExitAction(ActionEvent t) {
         Platform.exit();
     }
 

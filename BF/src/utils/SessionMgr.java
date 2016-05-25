@@ -56,8 +56,7 @@ public class SessionMgr {
     // File I/O
 
     public static String getFileList() throws Exception {
-        String serverResp = NetUtils.getURL(host + "/io/list?sessid=" + sessionId);
-        return serverResp;
+        return NetUtils.getURL(host + "/io/list?sessid=" + sessionId);
     }
 
     public static String saveFile(String code, String filename) throws Exception {

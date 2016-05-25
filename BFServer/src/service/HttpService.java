@@ -15,8 +15,7 @@ import java.util.concurrent.Executors;
  * Created by adn55 on 16/5/12.
  */
 public class HttpService {
-    private int port;
-    private ExecutorService executor;
+    private final int port;
     private HttpServer httpServer;
 
     public HttpService(int port) {
@@ -25,7 +24,7 @@ public class HttpService {
 
     public boolean start() {
         //create thread pool
-        executor = Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newCachedThreadPool();
         //setup HTTP server
         try {
             httpServer = HttpServer.create(new InetSocketAddress(this.port), 0);

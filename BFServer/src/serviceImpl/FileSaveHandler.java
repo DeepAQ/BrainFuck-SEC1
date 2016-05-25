@@ -26,12 +26,16 @@ public class FileSaveHandler implements HttpHandler {
             for (String param : query.split("&")) {
                 String pair[] = param.split("=");
                 if (pair.length > 1) {
-                    if (pair[0].equals("code")) {
-                        code = pair[1];
-                    } else if (pair[0].equals("filename")) {
-                        filename = pair[1];
-                    } else if (pair[0].equals("sessid")) {
-                        sessid = pair[1];
+                    switch (pair[0]) {
+                        case "code":
+                            code = pair[1];
+                            break;
+                        case "filename":
+                            filename = pair[1];
+                            break;
+                        case "sessid":
+                            sessid = pair[1];
+                            break;
                     }
                 }
             }

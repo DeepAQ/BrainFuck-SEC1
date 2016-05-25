@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class DataMgr {
     public static Data data = new Data();
-    private static String fileName = "BFServer.dat";
+    private static final String fileName = "BFServer.dat";
 
     public static void loadFromFile() {
         try {
@@ -35,5 +35,5 @@ public class DataMgr {
 }
 
 class Data implements Serializable {
-    public HashMap<String, String> users = new HashMap<>();
+    public final HashMap<String, String> users = new HashMap<>();
 }

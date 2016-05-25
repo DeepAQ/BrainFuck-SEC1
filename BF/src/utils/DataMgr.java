@@ -7,7 +7,7 @@ import java.io.*;
  */
 public class DataMgr {
     public static BFData data = new BFData();
-    private static String fileName = "BFClient.dat";
+    private static final String fileName = "BFClient.dat";
 
     public static void loadFromFile() {
         try {

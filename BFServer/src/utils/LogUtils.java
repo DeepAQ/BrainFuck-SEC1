@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class LogUtils {
     private static TextArea logArea;
-    private static String[] logLevels = new String[]{"D", "I", "W", "E"};
+    private static final String[] logLevels = new String[]{"D", "I", "W", "E"};
     private static int logLevel = 0;
 
     public static void init(TextArea textArea) {
