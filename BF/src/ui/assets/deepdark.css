@@ -14,11 +14,7 @@
     -fx-background-color: #333333;
 }
 
-.label, {
-    -fx-text-fill: #cccccc;
-}
-
-.text-area {
+.label, .tab-label, .text-area {
     -fx-text-fill: #ffffff;
 }
 

@@ -45,8 +45,6 @@ public class MainUI extends Stage {
                     }
                 }
         );
-
-        webView.getEngine().load(getClass().getResource("ServerDebugger.html").toString());
     }
 
     private HttpService mainService;
@@ -59,8 +57,6 @@ public class MainUI extends Stage {
     private TextArea textLogs;
     @FXML
     private ChoiceBox choiceLogLevel;
-    @FXML
-    private WebView webView;
 
     @FXML
     protected void onExitAction() {

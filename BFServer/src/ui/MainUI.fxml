@@ -79,15 +79,6 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Debugger">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0">
-                           <children>
-                              <WebView fx:id="webView" layoutX="88.0" layoutY="27.0" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
                </tabs>
             </TabPane>
          </center>

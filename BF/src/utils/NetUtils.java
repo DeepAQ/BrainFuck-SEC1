@@ -15,8 +15,8 @@ import java.security.MessageDigest;
 public class NetUtils {
     public static String getURL(String url) throws IOException {
         URLConnection _conn = new URL(url).openConnection();
-        _conn.setConnectTimeout(10000);
-        _conn.setReadTimeout(10000);
+        _conn.setConnectTimeout(5000);
+        _conn.setReadTimeout(5000);
         String resp;
         if (_conn instanceof HttpsURLConnection) {
             HttpsURLConnection conn = (HttpsURLConnection) _conn;

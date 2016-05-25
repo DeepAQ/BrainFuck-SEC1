@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -46,8 +48,6 @@ public class LoginUI extends Stage {
     @FXML
     private CheckBox checkRemember;
     @FXML
-    private Button btnLogin;
-    @FXML
     private Label labelStatus;
 
     private LoginSuccessHandler loginSuccessHandler;
@@ -67,6 +67,13 @@ public class LoginUI extends Stage {
             loginSuccessHandler.onLoginSuccess();
         } catch (Exception e) {
             labelStatus.setText("Login failed: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void onInputKeyPressed(KeyEvent t) {
+        if (t.getCode().equals(KeyCode.ENTER)) {
+            onLoginAction(null);
         }
     }
 
