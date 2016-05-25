@@ -6,13 +6,13 @@ import java.io.*;
  * Created by adn55 on 16/5/21.
  */
 public class DataMgr {
-    public static Data data = new Data();
+    public static BFData data = new BFData();
     private static String fileName = "BFClient.dat";
 
     public static void loadFromFile() {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
-            data = (Data) is.readObject();
+            data = (BFData) is.readObject();
             is.close();
         } catch (Exception e) {
             e.printStackTrace();

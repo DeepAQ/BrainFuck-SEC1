@@ -4,8 +4,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import service.HttpService;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +11,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.web.WebView;
 import utils.LogUtils;
 
 /**
@@ -38,11 +35,8 @@ public class MainUI extends Stage {
         choiceLogLevel.setItems(FXCollections.observableArrayList("Debug", "Info", "Warning", "Error"));
         choiceLogLevel.getSelectionModel().select(0);
         choiceLogLevel.getSelectionModel().selectedIndexProperty().addListener(
-                new ChangeListener<Number>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        LogUtils.setLogLevel((int) newValue);
-                    }
+                (observable, oldValue, newValue) -> {
+                    LogUtils.setLogLevel((int) newValue);
                 }
         );
     }

@@ -2,7 +2,6 @@ package ui;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import utils.SessionMgr;
 
 /**
@@ -31,6 +29,8 @@ public class LoginUI extends Stage {
         this.setTitle("Login");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
+        this.setResizable(false);
+
         this.setOnCloseRequest(event -> Platform.exit());
         inputUsername.requestFocus();
     }

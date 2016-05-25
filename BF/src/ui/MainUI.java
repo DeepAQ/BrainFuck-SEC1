@@ -1,7 +1,6 @@
 package ui;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventType;
@@ -58,6 +57,12 @@ public class MainUI extends Stage {
     @FXML // New
     protected void onFileNewAction(ActionEvent t) {
         newTab();
+    }
+
+    @FXML // Open
+    protected void onFileOpenAction(ActionEvent t) throws Exception {
+        FileOpenUI fileOpenUI = new FileOpenUI();
+        fileOpenUI.show();
     }
 
     @FXML // Save

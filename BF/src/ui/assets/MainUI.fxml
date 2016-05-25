@@ -17,7 +17,7 @@
                                 <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Open…">
+                        <MenuItem mnemonicParsing="false" onAction="#onFileOpenAction" text="Open…">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>

@@ -55,6 +55,11 @@ public class SessionMgr {
 
     // File I/O
 
+    public static String getFileList() throws Exception {
+        String serverResp = NetUtils.getURL(host + "/io/list?sessid=" + sessionId);
+        return serverResp;
+    }
+
     public static String saveFile(String code, String filename) throws Exception {
         String serverResp = NetUtils.getURL(host + "/io/save?sessid=" + sessionId + "&code=" + code + "&filename=" + filename);
         JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
