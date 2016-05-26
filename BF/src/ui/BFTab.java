@@ -50,6 +50,11 @@ public class BFTab extends Tab {
         });
     }
 
+    public void setCode(String code) {
+        this.originalCode = code;
+        textCode.setText(code);
+    }
+
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -59,13 +64,13 @@ public class BFTab extends Tab {
     }
 
     @FXML
-    public TextArea textCode, textInput, textOutput;
+    private TextArea textCode, textInput, textOutput;
 
-    public String fileName, fileVersion;
+    private String fileName, fileVersion;
     private String originalCode = "";
-    public boolean modified = false;
+    private boolean modified = false;
 
-    public void updateTabName() {
+    private void updateTabName() {
         String modFlag = "";
         if (this.modified) {
             modFlag = "* ";
@@ -77,7 +82,7 @@ public class BFTab extends Tab {
         }
     }
 
-    public void saveToFile(String fileName) throws Exception {
+    private void saveToFile(String fileName) throws Exception {
         String newVersion = SessionMgr.saveFile(textCode.getText(), fileName);
         this.fileName = fileName;
         this.fileVersion = newVersion;
@@ -118,6 +123,19 @@ public class BFTab extends Tab {
                 showError(e.getLocalizedMessage());
             }
         }
+    }
+
+    public void runAction() {
+        String code = textCode.getText();
+        String input = textInput.getText();
+        if (code.isEmpty()) return;
+        String output;
+        try {
+            output = SessionMgr.execute(code, input);
+        } catch (Exception e) {
+            output = "Execution error:\n" + e.getMessage();
+        }
+        textOutput.setText(output);
     }
 
 }

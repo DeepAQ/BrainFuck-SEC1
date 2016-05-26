@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
  * Created by adn55 on 16/5/20.
  */
 public class SplashUI extends Stage {
-    public Scene scene;
+    private Scene scene;
 
     public SplashUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/SplashUI.fxml"));

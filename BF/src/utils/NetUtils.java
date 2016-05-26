@@ -12,7 +12,7 @@ import java.security.MessageDigest;
 /**
  * Created by adn55 on 16/5/21.
  */
-public class NetUtils {
+class NetUtils {
     public static String getURL(String url) throws IOException {
         URLConnection _conn = new URL(url).openConnection();
         _conn.setConnectTimeout(5000);
@@ -30,7 +30,7 @@ public class NetUtils {
         return resp;
     }
 
-    public static String getStringFromInputStream(InputStream is) throws IOException {
+    private static String getStringFromInputStream(InputStream is) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len;

@@ -17,7 +17,7 @@ import utils.LogUtils;
  * Created by adn55 on 16/5/13.
  */
 public class MainUI extends Stage {
-    public Scene scene;
+    private Scene scene;
 
     public MainUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUI.fxml"));

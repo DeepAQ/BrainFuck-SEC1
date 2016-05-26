@@ -32,7 +32,7 @@ public class LogUtils {
     }
 
     public static void logE(Exception e) {
-        log("E", e.getClass().getName(), e.getLocalizedMessage());
+        log("E", e.getClass().getSimpleName(), e.getLocalizedMessage());
         e.printStackTrace();
     }
 }

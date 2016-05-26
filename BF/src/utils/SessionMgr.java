@@ -10,7 +10,7 @@ import java.net.URLEncoder;
  */
 public class SessionMgr {
     public static String host = "http://localhost:8081";
-    public static String sessionId = "";
+    private static String sessionId = "";
 
     // User login & logout
 
@@ -57,6 +57,16 @@ public class SessionMgr {
 
     public static String getFileList() throws Exception {
         return NetUtils.getURL(host + "/io/list?sessid=" + sessionId);
+    }
+
+    public static String getFileContent(String filename, String version) throws Exception {
+        String serverResp = NetUtils.getURL(host + "/io/open?sessid=" + sessionId + "&filename=" + filename + "&version=" + version);
+        JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
+        if (jsonObj.getInt("result") < 0) {
+            throw new Exception(jsonObj.getString("errmsg"));
+        } else {
+            return jsonObj.getString("code");
+        }
     }
 
     public static String saveFile(String code, String filename) throws Exception {

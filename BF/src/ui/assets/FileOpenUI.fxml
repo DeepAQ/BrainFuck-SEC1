@@ -19,7 +19,7 @@
                   <TableView fx:id="tableFiles" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
                     <columns>
                       <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" text="File Name" />
-                      <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Last Modified" />
+                      <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Latest Version" />
                     </columns>
                   </TableView>
                </children>
@@ -44,7 +44,7 @@
       <Separator prefWidth="200.0" />
       <HBox alignment="CENTER_RIGHT" prefHeight="40.0">
          <children>
-            <Button fx:id="btnOpen" defaultButton="true" disable="true" mnemonicParsing="false" text="Open">
+            <Button fx:id="btnOpen" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#onOpenAction" text="Open">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>

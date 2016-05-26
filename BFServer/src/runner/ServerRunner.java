@@ -16,12 +16,8 @@ public class ServerRunner extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage = new MainUI();
-        setup();
-        primaryStage.show();
-    }
-
-    public void setup() {
         DataMgr.loadFromFile();
+        primaryStage.show();
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ClientRunner extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Setup the application
-        setup();
+        DataMgr.loadFromFile();
         // Show splash screen
         mainStage = new SplashUI();
         mainStage.show();
@@ -58,10 +58,6 @@ public class ClientRunner extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void setup() {
-        DataMgr.loadFromFile();
     }
 
     @Override

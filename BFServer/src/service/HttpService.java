@@ -1,10 +1,7 @@
 package service;
 
 import com.sun.net.httpserver.HttpServer;
-import serviceImpl.ExecuteHandler;
-import serviceImpl.FileListHandler;
-import serviceImpl.FileSaveHandler;
-import serviceImpl.UserLoginHandler;
+import serviceImpl.*;
 import utils.LogUtils;
 
 import java.net.InetSocketAddress;
@@ -31,6 +28,7 @@ public class HttpService {
             httpServer.setExecutor(executor);
             httpServer.createContext("/user/login", new UserLoginHandler());
             httpServer.createContext("/io/list", new FileListHandler());
+            httpServer.createContext("/io/open", new FileOpenHandler());
             httpServer.createContext("/io/save", new FileSaveHandler());
             httpServer.createContext("/io/execute", new ExecuteHandler());
             httpServer.start();

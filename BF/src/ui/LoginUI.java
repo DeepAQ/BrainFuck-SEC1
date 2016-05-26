@@ -18,7 +18,7 @@ import utils.SessionMgr;
  * Created by adn55 on 16/5/20.
  */
 public class LoginUI extends Stage {
-    public Scene scene;
+    private Scene scene;
 
     public LoginUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/LoginUI.fxml"));

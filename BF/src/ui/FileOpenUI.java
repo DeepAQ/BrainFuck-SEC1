@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,9 +22,10 @@ import java.util.ArrayList;
  * Created by adn55 on 16/5/25.
  */
 public class FileOpenUI extends Stage {
-    public Scene scene;
+    private Scene scene;
+    private TabPane tabPane;
 
-    public FileOpenUI() throws Exception {
+    public FileOpenUI(TabPane tabPane) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/FileOpenUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
@@ -37,6 +35,7 @@ public class FileOpenUI extends Stage {
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);
+        this.tabPane = tabPane;
 
         tableFiles.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("filename"));
         tableFiles.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("lastModified"));
@@ -71,7 +70,7 @@ public class FileOpenUI extends Stage {
         alert.showAndWait();
     }
 
-    public void getFileList() {
+    private void getFileList() {
         tableFiles.getItems().clear();
         try {
             String fileList = SessionMgr.getFileList();
@@ -113,6 +112,22 @@ public class FileOpenUI extends Stage {
     @FXML
     protected void onCancelAction(ActionEvent t) {
         this.close();
+    }
+
+    @FXML
+    protected void onOpenAction(ActionEvent t) {
+        try {
+            String filename = tableFiles.getSelectionModel().getSelectedItem().getRealFilename();
+            String version = tableVersions.getSelectionModel().getSelectedItem().getVersion();
+            String code = SessionMgr.getFileContent(filename, version);
+            BFTab newTab = new BFTab(filename, version);
+            newTab.setCode(code);
+            tabPane.getTabs().add(newTab);
+            tabPane.getSelectionModel().select(newTab);
+            this.close();
+        } catch (Exception e) {
+            showError(e.getLocalizedMessage());
+        }
     }
 
     public static class FileProperty {

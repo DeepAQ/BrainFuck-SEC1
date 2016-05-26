@@ -17,7 +17,7 @@ public class ExecuteHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", "ExecuteHandler", "New /io/execute request with query " + query);
+        LogUtils.log("D", getClass().getSimpleName(), "New /io/execute request with query " + query);
         String sessid = "";
         String code = "";
         String input = "";
@@ -54,7 +54,7 @@ public class ExecuteHandler implements HttpHandler {
         }
         json.endObject();
         String response = json.toString();
-        LogUtils.log("D", "ExecuteHandler", "Execute result is \"" + output + "\"");
+        LogUtils.log("D", getClass().getSimpleName(), "Execute result is \"" + output + "\"");
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());

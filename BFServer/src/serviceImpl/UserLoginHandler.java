@@ -16,7 +16,7 @@ public class UserLoginHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", "UserLoginHandler", "New /user/login request with query " + query);
+        LogUtils.log("D", getClass().getSimpleName(), "New /user/login request with query " + query);
         String username = "";
         String pwdhash = "";
         if (query != null) {
@@ -39,7 +39,7 @@ public class UserLoginHandler implements HttpHandler {
             //login success
             String sessionId = UserMgr.newSessionId(username);
             json.key("sessid").value(sessionId);
-            LogUtils.log("D", "UserLoginHandler", username + " login successful, sessionId is " + sessionId);
+            LogUtils.log("D", getClass().getSimpleName(), username + " login successful, sessionId is " + sessionId);
         } else {
             //login failed
             String errorMsg;
@@ -55,7 +55,7 @@ public class UserLoginHandler implements HttpHandler {
                     break;
             }
             json.key("errmsg").value(errorMsg);
-            LogUtils.log("D", "UserLoginHandler", username + " login failed: " + errorMsg);
+            LogUtils.log("D", getClass().getSimpleName(), username + " login failed: " + errorMsg);
         }
         json.endObject();
         String response = json.toString();

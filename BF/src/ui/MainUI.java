@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import utils.DataMgr;
-import utils.SessionMgr;
 
 import java.util.ArrayList;
 
@@ -34,12 +33,12 @@ public class MainUI extends Stage {
         if (!DataMgr.data.theme.isEmpty()) {
             switchTheme(DataMgr.data.theme);
         }
-        newTab();
+        newEmptyTab();
     }
 
     private int untitled = 0;
 
-    private void newTab() {
+    private void newEmptyTab() {
         untitled++;
         try {
             Tab tmpTab = new BFTab("" , Integer.toString(untitled));
@@ -56,12 +55,12 @@ public class MainUI extends Stage {
     // File
     @FXML // New
     protected void onFileNewAction(ActionEvent t) {
-        newTab();
+        newEmptyTab();
     }
 
     @FXML // Open
     protected void onFileOpenAction(ActionEvent t) throws Exception {
-        FileOpenUI fileOpenUI = new FileOpenUI();
+        FileOpenUI fileOpenUI = new FileOpenUI(tabPane);
         fileOpenUI.show();
     }
 
@@ -136,15 +135,7 @@ public class MainUI extends Stage {
     @FXML
     protected void onRunAction(ActionEvent t) {
         BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
-        String code = currentTab.textCode.getText();
-        String input = currentTab.textInput.getText();
-        if (code.isEmpty()) return;
-        String output;
-        try {
-            output = SessionMgr.execute(code, input);
-        } catch (Exception e) {
-            output = "Execution error:\n" + e.getMessage();
-        }
-        currentTab.textOutput.setText(output);
+        currentTab.runAction();
+
     }
 }
