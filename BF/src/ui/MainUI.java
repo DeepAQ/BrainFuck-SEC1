@@ -3,6 +3,7 @@ package ui;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import utils.DataMgr;
 
 import java.util.ArrayList;
@@ -29,6 +31,14 @@ public class MainUI extends Stage {
         this.setScene(this.scene);
         this.setTitle("BrainFuck IDE");
         this.getIcons().add(new Image(getClass().getResourceAsStream("assets/StageIcon.png")));
+
+        this.setOnCloseRequest(event -> {
+            onFileCloseAllAction(null);
+            if (tabPane.getTabs().isEmpty()) {
+                Platform.exit();
+            }
+            event.consume();
+        });
 
         if (!DataMgr.data.theme.isEmpty()) {
             switchTheme(DataMgr.data.theme);
@@ -106,7 +116,7 @@ public class MainUI extends Stage {
 
     @FXML // Exit
     protected void onFileExitAction(ActionEvent t) {
-        Platform.exit();
+        this.close();
     }
 
     // View

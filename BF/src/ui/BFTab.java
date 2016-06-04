@@ -35,7 +35,7 @@ public class BFTab extends Tab {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("File modified");
                 alert.setHeaderText(null);
-                alert.setContentText("File \"" + this.getText() + "\" has been modified, save it?");
+                alert.setContentText("File \"" + this.getText().replace("* ", "") + "\" has been modified, save it?");
                 ButtonType buttonTypeYes = new ButtonType("Save");
                 ButtonType buttonTypeNo = new ButtonType("Discard");
                 ButtonType buttonTypeCancel = new ButtonType("Cancel");
@@ -114,7 +114,7 @@ public class BFTab extends Tab {
     public void saveAsAction() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Save as");
-        dialog.setHeaderText("Save \"" + this.getText() + "\" as");
+        dialog.setHeaderText("Save \"" + this.getText().replace("* ", "") + "\" as");
         dialog.setContentText("Filename:");
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
