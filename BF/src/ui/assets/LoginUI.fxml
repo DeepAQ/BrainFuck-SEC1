@@ -22,7 +22,7 @@
       <Label layoutX="32.0" layoutY="137.0" text="Password :" />
       <PasswordField fx:id="inputPassword" layoutX="103.0" layoutY="133.0" onKeyPressed="#onInputKeyPressed" prefWidth="250.0" promptText="Password" />
       <CheckBox fx:id="checkRemember" layoutX="103.0" layoutY="167.0" mnemonicParsing="false" text="Remember me" />
-      <Button layoutX="304.0" layoutY="163.0" mnemonicParsing="false" onAction="#onLoginAction" text="Login" />
+      <Button defaultButton="true" layoutX="304.0" layoutY="163.0" mnemonicParsing="false" onAction="#onLoginAction" text="Login" />
       <Label fx:id="labelStatus" layoutX="103.0" layoutY="196.0" textFill="RED">
          <font>
             <Font name="System Bold" size="12.0" />

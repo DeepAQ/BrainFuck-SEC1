@@ -62,6 +62,8 @@ public class LoginUI extends Stage {
             SessionMgr.login(username, password);
             if (checkRemember.isSelected()) {
                 SessionMgr.saveLoginInfo(username, password);
+            } else {
+                SessionMgr.saveLoginInfo("", "");
             }
             this.close();
             loginSuccessHandler.onLoginSuccess();

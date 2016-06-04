@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ImageView fitHeight="400.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@Splash.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </ImageView>
+   </center>
+   <bottom>
+      <TextArea editable="false" prefHeight="60.0" text="This product contains these third-party open-source softwares:&#10;JSON-java(org.json) - https://github.com/stleary/JSON-java&#10;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

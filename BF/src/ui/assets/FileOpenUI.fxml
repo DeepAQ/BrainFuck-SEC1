@@ -16,7 +16,7 @@
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="tableFiles" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+                  <TableView fx:id="tableFiles" onMouseClicked="#onFileClicked" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
                     <columns>
                       <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" text="File Name" />
                       <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Latest Version" />
@@ -32,9 +32,9 @@
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="tableVersions" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+                  <TableView fx:id="tableVersions" onMouseClicked="#onVersionClicked" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
                      <columns>
-                        <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="170.0" resizable="false" text="Version" />
+                        <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" resizable="false" text="Version" />
                      </columns>
                   </TableView>
                </children>

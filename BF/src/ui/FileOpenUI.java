@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -122,11 +123,30 @@ public class FileOpenUI extends Stage {
             String code = SessionMgr.getFileContent(filename, version);
             BFTab newTab = new BFTab(filename, version);
             newTab.setCode(code);
+            BFTab lastTab = (BFTab) tabPane.getTabs().get(tabPane.getTabs().size() - 1);
+            if (lastTab.fileName.isEmpty() && !lastTab.modified) {
+                tabPane.getTabs().remove(lastTab);
+            }
             tabPane.getTabs().add(newTab);
             tabPane.getSelectionModel().select(newTab);
             this.close();
         } catch (Exception e) {
             showError(e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    protected void onFileClicked(MouseEvent t) {
+        if (t.getClickCount() == 2) {
+            tableVersions.getSelectionModel().select(0);
+            onOpenAction(null);
+        }
+    }
+
+    @FXML
+    protected void onVersionClicked(MouseEvent t) {
+        if (t.getClickCount() == 2) {
+            onOpenAction(null);
         }
     }
 

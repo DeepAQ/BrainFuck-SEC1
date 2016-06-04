@@ -27,7 +27,7 @@ public class ExecuteHandler implements HttpHandler {
                 if (pair.length > 1) {
                     switch (pair[0]) {
                         case "code":
-                            code = pair[1];
+                            code = URLDecoder.decode(pair[1], "utf-8");
                             break;
                         case "input":
                             input = URLDecoder.decode(pair[1], "utf-8");

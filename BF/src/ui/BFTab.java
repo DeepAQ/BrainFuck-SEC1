@@ -66,9 +66,9 @@ public class BFTab extends Tab {
     @FXML
     private TextArea textCode, textInput, textOutput;
 
-    private String fileName, fileVersion;
+    public String fileName, fileVersion;
     private String originalCode = "";
-    private boolean modified = false;
+    public boolean modified = false;
 
     private void updateTabName() {
         String modFlag = "";

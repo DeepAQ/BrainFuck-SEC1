@@ -7,6 +7,7 @@ import utils.LogUtils;
 import utils.UserMgr;
 
 import java.io.*;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,7 +29,7 @@ public class FileSaveHandler implements HttpHandler {
                 if (pair.length > 1) {
                     switch (pair[0]) {
                         case "code":
-                            code = pair[1];
+                            code = URLDecoder.decode(pair[1], "utf-8");
                             break;
                         case "filename":
                             filename = pair[1];

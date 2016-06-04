@@ -136,6 +136,13 @@ public class MainUI extends Stage {
     protected void onRunAction(ActionEvent t) {
         BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
         currentTab.runAction();
-
     }
+
+    // Help
+    @FXML // About
+    protected void onAboutAction(ActionEvent t) throws Exception {
+        AboutUI aboutUI = new AboutUI();
+        aboutUI.show();
+    }
+
 }
