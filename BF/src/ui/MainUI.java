@@ -131,6 +131,29 @@ public class MainUI extends Stage {
         }
     }
 
+    @FXML // Theme
+    protected void onViewFontSizeAction(ActionEvent t) {
+        String fontSize = ((RadioMenuItem) t.getSource()).getId();
+        double size = 14;
+        switch (fontSize) {
+            case "fontSmall":
+                size = 12;
+                break;
+            case "fontLarge":
+                size = 18;
+                break;
+        }
+        switchFontSize(size);
+        DataMgr.data.fontSize = size;
+        DataMgr.saveToFile();
+    }
+
+    private void switchFontSize(double size) {
+        for (Tab tab : tabPane.getTabs()) {
+            ((BFTab) tab).setFontSize(size);
+        }
+    }
+
     // Run
     @FXML
     protected void onRunAction(ActionEvent t) {

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.text.Font;
+import utils.DataMgr;
 import utils.SessionMgr;
 
 import java.util.Optional;
@@ -21,6 +23,7 @@ public class BFTab extends Tab {
         this.fileName = name;
         this.fileVersion = version;
         this.updateTabName();
+        this.setFontSize(DataMgr.data.fontSize);
 
         textCode.textProperty().addListener((observable, oldValue, newValue) -> {
             modified = !textCode.getText().equals(originalCode);
@@ -53,6 +56,10 @@ public class BFTab extends Tab {
     public void setCode(String code) {
         this.originalCode = code;
         textCode.setText(code);
+    }
+
+    public void setFontSize(double size) {
+        textCode.setFont(new Font(textCode.getFont().getName(), size));
     }
 
     private void showError(String message) {

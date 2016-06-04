@@ -84,7 +84,17 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="View">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Font…" />
+                  <Menu mnemonicParsing="false" text="Font size">
+                     <items>
+                        <RadioMenuItem fx:id="fontSmall" mnemonicParsing="false" onAction="#onViewFontSizeAction" text="Small">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="theme1" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="fontMedium" mnemonicParsing="false" onAction="#onViewFontSizeAction" text="Medium" toggleGroup="$theme1" />
+                        <RadioMenuItem fx:id="fontLarge" mnemonicParsing="false" onAction="#onViewFontSizeAction" text="Large" toggleGroup="$theme1" />
+                     </items>
+                  </Menu>
                         <Menu mnemonicParsing="false" text="Theme">
                             <items>
                                 <RadioMenuItem fx:id="styleLight" mnemonicParsing="false" onAction="#onViewThemeAction" text="Light">

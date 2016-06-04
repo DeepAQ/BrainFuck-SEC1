@@ -8,4 +8,5 @@ import java.io.Serializable;
 public class BFData implements Serializable {
     public String username = "", pwdhash = "", host = "http://localhost:8081";
     public String theme = "";
+    public double fontSize = 14;
 }
