@@ -119,6 +119,35 @@ public class MainUI extends Stage {
         this.close();
     }
 
+    // Edit
+    @FXML
+    protected void onEditAction(ActionEvent t) {
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        switch (((MenuItem) t.getSource()).getId()) {
+            case "editUndo":
+                currentTab.undoAction();
+                break;
+            case "editRedo":
+                currentTab.redoAction();
+                break;
+            case "editSmartUndo":
+                currentTab.smartUndoAction();
+                break;
+            case "editSmartRedo":
+                currentTab.smartRedoAction();
+                break;
+            case "editCut":
+                currentTab.cutAction();
+                break;
+            case "editCopy":
+                currentTab.copyAction();
+                break;
+            case "editPaste":
+                currentTab.pasteAction();
+                break;
+        }
+    }
+
     // View
     @FXML // Theme
     protected void onViewThemeAction(ActionEvent t) {

@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import utils.DataMgr;
 import utils.SessionMgr;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -24,10 +25,17 @@ public class BFTab extends Tab {
         this.fileVersion = version;
         this.updateTabName();
         this.setFontSize(DataMgr.data.fontSize);
+        this.changeList.add("");
+        this.caretList.add(0);
 
         textCode.textProperty().addListener((observable, oldValue, newValue) -> {
             modified = !textCode.getText().equals(originalCode);
             updateTabName();
+            if (saveChangeThread.isAlive()) {
+                saveChangeThread.interrupt();
+            }
+            saveChangeThread = new Thread(saveChange);
+            saveChangeThread.start();
         });
 
         this.setOnCloseRequest(event -> {
@@ -76,6 +84,34 @@ public class BFTab extends Tab {
     public String fileName, fileVersion;
     private String originalCode = "";
     public boolean modified = false;
+
+    private ArrayList<String> changeList = new ArrayList<>();
+    private ArrayList<Integer> caretList = new ArrayList<>();
+    private int changeIndex = 0;
+    private Thread saveChangeThread = new Thread();
+    private Runnable saveChange = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                return;
+            }
+            if (changeIndex >= 0 && textCode.getText().equals(changeList.get(changeIndex))) {
+                return;
+            }
+            while (changeList.size() > changeIndex + 1) {
+                changeList.remove(changeIndex + 1);
+            }
+            changeList.add(textCode.getText());
+            caretList.add(textCode.getCaretPosition());
+            if (changeList.size() > 100) {
+                changeList.remove(0);
+                caretList.remove(0);
+            }
+            changeIndex = changeList.size() - 1;
+        }
+    };
 
     private void updateTabName() {
         String modFlag = "";
@@ -129,6 +165,46 @@ public class BFTab extends Tab {
             } catch (Exception e) {
                 showError(e.getLocalizedMessage());
             }
+        }
+    }
+
+    public void cutAction() {
+        textCode.cut();
+    }
+
+    public void copyAction() {
+        textCode.copy();
+    }
+
+    public void pasteAction() {
+        textCode.paste();
+    }
+
+    public void deleteAction() {
+        textCode.deleteNextChar();
+    }
+
+    public void undoAction() {
+        textCode.undo();
+    }
+
+    public void redoAction() {
+        textCode.redo();
+    }
+
+    public void smartUndoAction() {
+        if (changeIndex > 0) {
+            changeIndex--;
+            textCode.setText(changeList.get(changeIndex));
+            textCode.positionCaret(caretList.get(changeIndex));
+        }
+    }
+
+    public void smartRedoAction() {
+        if (changeIndex < changeList.size() - 1) {
+            changeIndex++;
+            textCode.setText(changeList.get(changeIndex));
+            textCode.positionCaret(caretList.get(changeIndex));
         }
     }
 

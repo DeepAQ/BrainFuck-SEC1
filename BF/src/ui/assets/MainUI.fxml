@@ -53,33 +53,43 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Undo">
+                        <MenuItem fx:id="editUndo" mnemonicParsing="false" onAction="#onEditAction" text="Undo">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Redo">
+                        <MenuItem fx:id="editRedo" mnemonicParsing="false" onAction="#onEditAction" text="Redo">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut">
+                  <MenuItem fx:id="editSmartUndo" mnemonicParsing="false" onAction="#onEditAction" text="Smart Undo">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="editSmartRedo" mnemonicParsing="false" onAction="#onEditAction" text="Smart Redo">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="editCut" mnemonicParsing="false" onAction="#onEditAction" text="Cut">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Copy">
+                        <MenuItem fx:id="editCopy" mnemonicParsing="false" onAction="#onEditAction" text="Copy">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Paste">
+                        <MenuItem fx:id="editPaste" mnemonicParsing="false" onAction="#onEditAction" text="Paste">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="View">
