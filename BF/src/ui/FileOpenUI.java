@@ -123,9 +123,11 @@ public class FileOpenUI extends Stage {
             String code = SessionMgr.getFileContent(filename, version);
             BFTab newTab = new BFTab(filename, version);
             newTab.setCode(code);
-            BFTab lastTab = (BFTab) tabPane.getTabs().get(tabPane.getTabs().size() - 1);
-            if (lastTab.fileName.isEmpty() && !lastTab.modified) {
-                tabPane.getTabs().remove(lastTab);
+            if (tabPane.getTabs().size() > 0) {
+                BFTab lastTab = (BFTab) tabPane.getTabs().get(tabPane.getTabs().size() - 1);
+                if (lastTab.fileName.isEmpty() && !lastTab.modified) {
+                    tabPane.getTabs().remove(lastTab);
+                }
             }
             tabPane.getTabs().add(newTab);
             tabPane.getSelectionModel().select(newTab);

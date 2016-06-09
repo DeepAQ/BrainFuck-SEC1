@@ -70,7 +70,7 @@ public class SessionMgr {
     }
 
     public static String saveFile(String code, String filename) throws Exception {
-        String encCode = URLEncoder.encode(code, "utf-8");
+        String encCode = URLEncoder.encode(URLEncoder.encode(code, "utf-8"), "utf-8");
         String serverResp = NetUtils.getURL(host + "/io/save?sessid=" + sessionId + "&code=" + encCode + "&filename=" + filename);
         JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
         if (jsonObj.getInt("result") < 0) {
@@ -83,7 +83,7 @@ public class SessionMgr {
     // Code execute
 
     public static String execute(String code, String input) throws Exception {
-        String encCode = URLEncoder.encode(code, "utf-8");
+        String encCode = URLEncoder.encode(URLEncoder.encode(code, "utf-8"), "utf-8");
         String encInput = URLEncoder.encode(URLEncoder.encode(input, "utf-8"), "utf-8");
         String serverResp = NetUtils.getURL(host + "/io/execute?sessid=" + sessionId + "&code=" + encCode + "&input=" + encInput);
         JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();

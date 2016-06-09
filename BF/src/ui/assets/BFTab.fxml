@@ -27,7 +27,7 @@
                            <children>
                               <TextArea fx:id="textInput" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
-                                    <Font name="Consolas" size="12.0" />
+                                    <Font name="Consolas" size="14.0" />
                                  </font>
                               </TextArea>
                            </children>
@@ -44,7 +44,7 @@
                            <children>
                               <TextArea fx:id="textOutput" editable="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
-                                    <Font name="Consolas" size="12.0" />
+                                    <Font name="Consolas" size="14.0" />
                                  </font>
                               </TextArea>
                            </children>
