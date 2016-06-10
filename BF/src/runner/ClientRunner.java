@@ -38,19 +38,19 @@ public class ClientRunner extends Application {
             if (!SessionMgr.tryAutoLogin()) {
                 try {
                     LoginUI loginStage = new LoginUI();
-                    loginStage.setLoginSuccessHandler(this::showMainStage);
+                    loginStage.setLoginSuccessHandler(this::showMainUI);
                     loginStage.show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                showMainStage();
+                showMainUI();
             }
         });
         new Thread(delayedTask).start();
     }
 
-    private void showMainStage() {
+    private void showMainUI() {
         try {
             mainStage.close();
             mainStage = new MainUI();

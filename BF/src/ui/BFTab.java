@@ -180,10 +180,6 @@ public class BFTab extends Tab {
         textCode.paste();
     }
 
-    public void deleteAction() {
-        textCode.deleteNextChar();
-    }
-
     public void undoAction() {
         textCode.undo();
     }

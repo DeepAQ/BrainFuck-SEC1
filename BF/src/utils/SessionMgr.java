@@ -10,6 +10,7 @@ import java.net.URLEncoder;
  */
 public class SessionMgr {
     public static String host = "http://localhost:8081";
+    public static String username = "";
     private static String sessionId = "";
 
     // User login & logout
@@ -26,11 +27,16 @@ public class SessionMgr {
             throw new Exception(jsonObj.getString("errmsg"));
         } else {
             sessionId = jsonObj.getString("sessid");
+            SessionMgr.username = username;
         }
     }
 
     public static void logout() {
+        username = "";
         sessionId = "";
+        DataMgr.data.username = "";
+        DataMgr.data.pwdhash = "";
+        DataMgr.saveToFile();
     }
 
     public static void saveLoginInfo(String username, String password) {

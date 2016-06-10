@@ -132,6 +132,12 @@
                         <MenuItem mnemonicParsing="false" onAction="#onAboutAction" text="About…" />
                     </items>
                 </Menu>
+            <Menu fx:id="menuUser" mnemonicParsing="false" text="User">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onUserLogoutAction" text="Logout" />
+                  <MenuItem mnemonicParsing="false" text="Change password" />
+               </items>
+            </Menu>
             </menus>
         </MenuBar>
     </top>

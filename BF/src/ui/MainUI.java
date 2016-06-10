@@ -13,7 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import runner.ClientRunner;
 import utils.DataMgr;
+import utils.SessionMgr;
 
 import java.util.ArrayList;
 
@@ -31,6 +33,9 @@ public class MainUI extends Stage {
         this.setScene(this.scene);
         this.setTitle("BrainFuck IDE");
         this.getIcons().add(new Image(getClass().getResourceAsStream("assets/StageIcon.png")));
+        if (!SessionMgr.username.isEmpty()) {
+            menuUser.setText("Logged in as: " + SessionMgr.username);
+        }
 
         this.setOnCloseRequest(event -> {
             onFileCloseAllAction(null);
@@ -61,6 +66,8 @@ public class MainUI extends Stage {
 
     @FXML
     private TabPane tabPane;
+    @FXML
+    private Menu menuUser;
 
     // File
     @FXML // New
@@ -116,7 +123,9 @@ public class MainUI extends Stage {
 
     @FXML // Exit
     protected void onFileExitAction(ActionEvent t) {
-        this.close();
+        try {
+            this.getOnCloseRequest().handle(null);
+        } catch (Exception e) {}
     }
 
     // Edit
@@ -205,6 +214,20 @@ public class MainUI extends Stage {
     protected void onAboutAction(ActionEvent t) throws Exception {
         AboutUI aboutUI = new AboutUI();
         aboutUI.show();
+    }
+
+    // User
+    @FXML // Logout
+    protected void onUserLogoutAction(ActionEvent t) {
+        onFileCloseAllAction(null);
+        if (tabPane.getTabs().isEmpty()) {
+            SessionMgr.logout();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Logged out, please reopen the IDE.");
+            alert.showAndWait();
+            Platform.exit();
+        }
     }
 
 }
