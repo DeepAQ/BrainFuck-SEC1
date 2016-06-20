@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.DataMgr;
 import utils.SessionMgr;
 
 /**
@@ -32,6 +33,7 @@ public class LoginUI extends Stage {
         this.setResizable(false);
 
         this.setOnCloseRequest(event -> Platform.exit());
+        inputServer.setText(DataMgr.data.host);
         inputUsername.requestFocus();
     }
 
@@ -80,6 +82,6 @@ public class LoginUI extends Stage {
     }
 
     public interface LoginSuccessHandler {
-        void onLoginSuccess();
+        void onLoginSuccess() throws Exception;
     }
 }

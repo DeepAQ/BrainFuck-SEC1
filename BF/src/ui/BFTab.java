@@ -70,14 +70,6 @@ public class BFTab extends Tab {
         textCode.setFont(new Font(textCode.getFont().getName(), size));
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     @FXML
     private TextArea textCode, textInput, textOutput;
 
@@ -140,7 +132,7 @@ public class BFTab extends Tab {
             try {
                 this.saveToFile(this.fileName);
             } catch (Exception e) {
-                showError(e.getLocalizedMessage());
+                Dialogs.showError(e.getLocalizedMessage());
             }
         } else {
             saveAsAction();
@@ -156,14 +148,14 @@ public class BFTab extends Tab {
         if (result.isPresent()) {
             String filename = result.get();
             if (filename.isEmpty()) {
-                showError("Filename cannot be empty!");
+                Dialogs.showError("Filename cannot be empty!");
                 saveAsAction();
                 return;
             }
             try {
                 this.saveToFile(filename);
             } catch (Exception e) {
-                showError(e.getLocalizedMessage());
+                Dialogs.showError(e.getLocalizedMessage());
             }
         }
     }

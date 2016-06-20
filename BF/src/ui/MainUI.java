@@ -222,12 +222,29 @@ public class MainUI extends Stage {
         onFileCloseAllAction(null);
         if (tabPane.getTabs().isEmpty()) {
             SessionMgr.logout();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Logged out, please reopen the IDE.");
-            alert.showAndWait();
-            Platform.exit();
+            try {
+                LoginUI loginUI = new LoginUI();
+                loginUI.setLoginSuccessHandler(new LoginUI.LoginSuccessHandler() {
+                    @Override
+                    public void onLoginSuccess() throws Exception {
+                        MainUI mainUI = new MainUI();
+                        mainUI.show();
+                    }
+                });
+                loginUI.show();
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Dialogs.showError("An error occured, please reopen the IDE.");
+                Platform.exit();
+            }
         }
+    }
+
+    @FXML // Change password
+    protected void onUserChangePasswordAction(ActionEvent t) throws Exception {
+        ChangePasswordUI changeUI = new ChangePasswordUI();
+        changeUI.show();
     }
 
 }

@@ -63,14 +63,6 @@ public class FileOpenUI extends Stage {
         this.getFileList();
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     private void getFileList() {
         tableFiles.getItems().clear();
         try {
@@ -89,11 +81,11 @@ public class FileOpenUI extends Stage {
                 tableFiles.getItems().add(fileProperty);
             }
         } catch (Exception e) {
-            showError(e.getLocalizedMessage());
+            Dialogs.showError(e.getLocalizedMessage());
             this.close();
         }
         if (tableFiles.getItems().isEmpty()) {
-            showError("No files saved, try to create a new one~");
+            Dialogs.showError("No files saved, try to create a new one~");
             this.close();
         } else {
             tableFiles.getSortOrder().clear();
@@ -133,7 +125,7 @@ public class FileOpenUI extends Stage {
             tabPane.getSelectionModel().select(newTab);
             this.close();
         } catch (Exception e) {
-            showError(e.getLocalizedMessage());
+            Dialogs.showError(e.getLocalizedMessage());
         }
     }
 

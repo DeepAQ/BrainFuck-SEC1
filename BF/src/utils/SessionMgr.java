@@ -59,6 +59,15 @@ public class SessionMgr {
         }
     }
 
+    public static void changePassword(String oldPassword, String newPassword) throws Exception {
+        String serverResp = NetUtils.getURL(host + "/user/changepassword?sessid=" + sessionId + "&oldpwdhash=" + NetUtils.hash(oldPassword) + "&newpwdhash=" + NetUtils.hash(newPassword));
+        JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
+        int result = jsonObj.getInt("result");
+        if (result < 0) {
+            throw new Exception(jsonObj.getString("errmsg"));
+        }
+    }
+
     // File I/O
 
     public static String getFileList() throws Exception {

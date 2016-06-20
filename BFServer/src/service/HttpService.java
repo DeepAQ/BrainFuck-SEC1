@@ -27,6 +27,7 @@ public class HttpService {
             httpServer = HttpServer.create(new InetSocketAddress(this.port), 0);
             httpServer.setExecutor(executor);
             httpServer.createContext("/user/login", new UserLoginHandler());
+            httpServer.createContext("/user/changepassword", new UserChangePasswordHandler());
             httpServer.createContext("/io/list", new FileListHandler());
             httpServer.createContext("/io/open", new FileOpenHandler());
             httpServer.createContext("/io/save", new FileSaveHandler());

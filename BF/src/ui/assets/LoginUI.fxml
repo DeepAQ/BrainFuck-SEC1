@@ -7,16 +7,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #333333;">
+      <AnchorPane prefHeight="55.0" prefWidth="400.0" style="-fx-background-color: #333333;">
          <children>
-            <Label alignment="CENTER" layoutX="48.0" layoutY="14.0" text="Welcome to BrainFuck IDE" textFill="WHITE">
+            <Label alignment="CENTER" text="Welcome to BrainFuck IDE" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
          </children>
-      </Pane>
-      <TextField fx:id="inputServer" layoutX="103.0" layoutY="67.0" prefWidth="250.0" promptText="Server" text="http://localhost:8081" />
+      </AnchorPane>
+      <TextField fx:id="inputServer" layoutX="103.0" layoutY="67.0" prefWidth="250.0" promptText="Server" text="" />
       <Label layoutX="28.0" layoutY="104.0" text="Username :" />
       <TextField fx:id="inputUsername" layoutX="103.0" layoutY="100.0" onKeyPressed="#onInputKeyPressed" prefWidth="250.0" promptText="Username" />
       <Label layoutX="32.0" layoutY="137.0" text="Password :" />

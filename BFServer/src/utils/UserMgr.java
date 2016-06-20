@@ -56,6 +56,18 @@ public class UserMgr {
         }
     }
 
+    public static int changePassword(String username, String oldPwdHash, String newPwdHash) {
+        if (DataMgr.data.users.containsKey(username)) {
+            if (DataMgr.data.users.get(username).equals(oldPwdHash)) {
+                return resetPassword(username, newPwdHash);
+            } else {
+                return RESULT_PASSWORD_INCORRECT;
+            }
+        } else {
+            return RESULT_USER_NOEXIST;
+        }
+    }
+
     public static int resetPassword(String username, String newPwdHash) {
         if (DataMgr.data.users.containsKey(username)) {
             DataMgr.data.users.remove(username);
