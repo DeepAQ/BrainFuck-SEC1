@@ -1,60 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-         <children>
-            <AnchorPane prefHeight="400.0" prefWidth="300.0">
-               <children>
-                  <Label text="Select a file :" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-                     <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TableView fx:id="tableFiles" onMouseClicked="#onFileClicked" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
-                    <columns>
-                      <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" text="File Name" />
-                      <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Latest Version" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <AnchorPane prefHeight="400.0" prefWidth="200.0">
-               <children>
-                  <Label text="Select a version :" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                     <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TableView fx:id="tableVersions" onMouseClicked="#onVersionClicked" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
-                     <columns>
-                        <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" resizable="false" text="Version" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <Separator prefWidth="200.0" />
-      <HBox alignment="CENTER_RIGHT" prefHeight="40.0">
-         <children>
-            <Button fx:id="btnOpen" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#onOpenAction" text="Open">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancelAction" text="Cancel">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </children>
+   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+      <AnchorPane prefHeight="400.0" prefWidth="300.0">
+         <Label text="Select a file :" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <VBox.margin>
+               <Insets left="20.0" top="20.0"/>
+            </VBox.margin>
+         </Label>
+         <TableView fx:id="tableFiles" onMouseClicked="#onFileClicked" AnchorPane.bottomAnchor="10.0"
+                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+            <columns>
+               <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0"
+                            text="File Name"/>
+               <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0"
+                            text="Latest Version"/>
+            </columns>
+         </TableView>
+      </AnchorPane>
+      <Separator orientation="VERTICAL" prefHeight="200.0"/>
+      <AnchorPane prefHeight="400.0" prefWidth="200.0">
+         <Label text="Select a version :" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <VBox.margin>
+               <Insets left="20.0" top="20.0"/>
+            </VBox.margin>
+         </Label>
+         <TableView fx:id="tableVersions" onMouseClicked="#onVersionClicked" AnchorPane.bottomAnchor="10.0"
+                    AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+            <columns>
+               <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0"
+                            resizable="false" text="Version"/>
+            </columns>
+         </TableView>
+      </AnchorPane>
+   </HBox>
+   <Separator prefWidth="200.0"/>
+   <HBox alignment="CENTER_RIGHT" prefHeight="40.0">
+      <Button fx:id="btnOpen" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#onOpenAction"
+              text="Open">
+         <HBox.margin>
+            <Insets right="10.0"/>
+         </HBox.margin>
+      </Button>
+      <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancelAction" text="Cancel">
+         <HBox.margin>
+            <Insets right="20.0"/>
+         </HBox.margin>
+      </Button>
+   </HBox>
 </VBox>

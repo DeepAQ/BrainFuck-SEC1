@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 16/5/25.
  */
-public class FileOpenUI extends Stage {
+class FileOpenUI extends Stage {
     private Scene scene;
     private TabPane tabPane;
 

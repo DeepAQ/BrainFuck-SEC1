@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 /**
  * Created by adn55 on 16/6/20.
  */
-public class Dialogs {
+class Dialogs {
     public static void showDialog(Alert.AlertType type, String title, String header, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

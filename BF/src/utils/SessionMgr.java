@@ -19,7 +19,7 @@ public class SessionMgr {
         loginWithPwdhash(username, NetUtils.hash(password));
     }
 
-    public static void loginWithPwdhash(String username, String pwdhash) throws Exception {
+    private static void loginWithPwdhash(String username, String pwdhash) throws Exception {
         String serverResp = NetUtils.getURL(host + "/user/login?username=" + username + "&pwdhash=" + pwdhash);
         JSONObject jsonObj = (JSONObject) new JSONTokener(serverResp).nextValue();
         int result = jsonObj.getInt("result");

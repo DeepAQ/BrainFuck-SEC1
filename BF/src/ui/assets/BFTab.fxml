@@ -1,59 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.input.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<javafx.scene.control.SplitPane dividerPositions="0.7" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <items>
-      <AnchorPane minHeight="0.0" minWidth="0.0">
-         <children>
-            <TextArea fx:id="textCode" layoutX="54.0" layoutY="14.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Consolas" size="14.0" />
-               </font>
-            </TextArea>
-         </children>
-      </AnchorPane>
-      <SplitPane dividerPositions="0.5" layoutX="62.0" layoutY="-39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <TabPane tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Input">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0">
-                           <children>
-                              <TextArea fx:id="textInput" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="Consolas" size="14.0" />
-                                 </font>
-                              </TextArea>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-            <TabPane tabClosingPolicy="UNAVAILABLE">
-               <tabs>
-                  <Tab text="Output">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0">
-                           <children>
-                              <TextArea fx:id="textOutput" editable="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="Consolas" size="14.0" />
-                                 </font>
-                              </TextArea>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
-         </items>
-      </SplitPane>
-   </items>
+<?import javafx.scene.text.Font?>
+<javafx.scene.control.SplitPane dividerPositions="0.7" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8"
+                                xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane minHeight="0.0" minWidth="0.0">
+        <TextArea fx:id="textCode" layoutX="54.0" layoutY="14.0" wrapText="true" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font name="Consolas" size="14.0"/>
+            </font>
+        </TextArea>
+    </AnchorPane>
+    <SplitPane dividerPositions="0.5" layoutX="62.0" layoutY="-39.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Input">
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                    <TextArea fx:id="textInput" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <font>
+                            <Font name="Consolas" size="14.0"/>
+                        </font>
+                    </TextArea>
+                </AnchorPane>
+            </Tab>
+        </TabPane>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Output">
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                    <TextArea fx:id="textOutput" editable="false" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
+                        <font>
+                            <Font name="Consolas" size="14.0"/>
+                        </font>
+                    </TextArea>
+                </AnchorPane>
+            </Tab>
+        </TabPane>
+    </SplitPane>
 </javafx.scene.control.SplitPane>

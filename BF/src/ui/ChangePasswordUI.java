@@ -16,7 +16,7 @@ import utils.SessionMgr;
 /**
  * Created by adn55 on 16/6/20.
  */
-public class ChangePasswordUI extends Stage {
+class ChangePasswordUI extends Stage {
     private Scene scene;
 
     public ChangePasswordUI() throws Exception {

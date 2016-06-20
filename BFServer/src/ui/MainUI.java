@@ -50,7 +50,7 @@ public class MainUI extends Stage {
     @FXML
     private TextArea textLogs;
     @FXML
-    private ChoiceBox choiceLogLevel;
+    private ChoiceBox<String> choiceLogLevel;
 
     @FXML
     protected void onExitAction() {

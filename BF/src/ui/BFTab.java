@@ -14,7 +14,7 @@ import java.util.Optional;
 /**
  * Created by adn55 on 16/5/16.
  */
-public class BFTab extends Tab {
+class BFTab extends Tab {
 
     public BFTab(String name, String version) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/BFTab.fxml"));
@@ -77,11 +77,11 @@ public class BFTab extends Tab {
     private String originalCode = "";
     public boolean modified = false;
 
-    private ArrayList<String> changeList = new ArrayList<>();
-    private ArrayList<Integer> caretList = new ArrayList<>();
+    private final ArrayList<String> changeList = new ArrayList<>();
+    private final ArrayList<Integer> caretList = new ArrayList<>();
     private int changeIndex = 0;
     private Thread saveChangeThread = new Thread();
-    private Runnable saveChange = new Runnable() {
+    private final Runnable saveChange = new Runnable() {
         @Override
         public void run() {
             try {

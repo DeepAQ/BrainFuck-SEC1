@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 /**
  * Created by adn55 on 16/5/26.
  */
-public class AboutUI extends Stage {
+class AboutUI extends Stage {
     private Scene scene;
 
     public AboutUI() throws Exception {
