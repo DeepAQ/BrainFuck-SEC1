@@ -17,14 +17,12 @@ import utils.SessionMgr;
  * Created by adn55 on 16/6/20.
  */
 class ChangePasswordUI extends Stage {
-    private Scene scene;
 
     public ChangePasswordUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/ChangePasswordUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        this.scene = new Scene(root);
-        this.setScene(this.scene);
+        this.setScene(new Scene(root));
         this.setTitle("Login");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);

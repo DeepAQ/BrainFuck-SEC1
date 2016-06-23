@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -23,15 +26,13 @@ import java.util.ArrayList;
  * Created by adn55 on 16/5/25.
  */
 class FileOpenUI extends Stage {
-    private Scene scene;
     private TabPane tabPane;
 
     public FileOpenUI(TabPane tabPane) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/FileOpenUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        this.scene = new Scene(root);
-        this.setScene(this.scene);
+        this.setScene(new Scene(root));
         this.setTitle("Open");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -148,17 +149,21 @@ class FileOpenUI extends Stage {
         private final SimpleStringProperty filename;
         private final SimpleStringProperty lastModified;
         private final ArrayList<VersionProperty> versions;
+
         private FileProperty(String s1, String s2, ArrayList<VersionProperty> versionProperties) {
             this.filename = new SimpleStringProperty(s1);
             this.lastModified = new SimpleStringProperty(s2);
             this.versions = versionProperties;
         }
+
         public String getFilename() {
             return filename.get() + ".bf";
         }
+
         public String getRealFilename() {
             return filename.get();
         }
+
         public String getLastModified() {
             return lastModified.get();
         }
@@ -166,9 +171,11 @@ class FileOpenUI extends Stage {
 
     public static class VersionProperty {
         private final SimpleStringProperty version;
+
         private VersionProperty(String s) {
             version = new SimpleStringProperty(s);
         }
+
         public String getVersion() {
             return version.get();
         }

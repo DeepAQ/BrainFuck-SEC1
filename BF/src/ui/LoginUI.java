@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
@@ -19,14 +22,12 @@ import utils.SessionMgr;
  * Created by adn55 on 16/5/20.
  */
 public class LoginUI extends Stage {
-    private Scene scene;
 
     public LoginUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/LoginUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        this.scene = new Scene(root);
-        this.setScene(this.scene);
+        this.setScene(new Scene(root));
         this.setTitle("Login");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);

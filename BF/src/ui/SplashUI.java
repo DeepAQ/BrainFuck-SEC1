@@ -10,14 +10,12 @@ import javafx.stage.StageStyle;
  * Created by adn55 on 16/5/20.
  */
 public class SplashUI extends Stage {
-    private Scene scene;
 
     public SplashUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/SplashUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        this.scene = new Scene(root);
-        this.setScene(this.scene);
+        this.setScene(new Scene(root));
         this.setTitle("BrainFuck IDE");
         this.initStyle(StageStyle.TRANSPARENT);
     }

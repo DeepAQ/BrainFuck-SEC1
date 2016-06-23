@@ -17,14 +17,12 @@ import utils.LogUtils;
  * Created by adn55 on 16/5/13.
  */
 public class MainUI extends Stage {
-    private Scene scene;
 
     public MainUI() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        scene = new Scene(root, 600, 450);
-        this.setScene(scene);
+        this.setScene(new Scene(root, 600, 450));
         this.setTitle("BrainFuck Server");
         this.setup();
     }

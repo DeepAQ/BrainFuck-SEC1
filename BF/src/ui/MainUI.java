@@ -53,7 +53,7 @@ public class MainUI extends Stage {
     private void newEmptyTab() {
         untitled++;
         try {
-            Tab tmpTab = new BFTab("" , Integer.toString(untitled));
+            Tab tmpTab = new BFTab("", Integer.toString(untitled));
             tabPane.getTabs().add(tmpTab);
             tabPane.getSelectionModel().select(tmpTab);
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class MainUI extends Stage {
     }
 
     @FXML // Exit
-    protected void onFileExitAction(ActionEvent t) throws Exception {
+    protected void onFileExitAction(ActionEvent t) {
         this.getOnCloseRequest().handle(null);
     }
 

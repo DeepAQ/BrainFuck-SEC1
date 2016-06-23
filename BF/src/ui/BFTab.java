@@ -52,9 +52,9 @@ class BFTab extends Tab {
                 if (!result.isPresent()) {
                     event.consume();
                 }
-                if (result.get().equals(buttonTypeYes)) {
+                if (result.isPresent() && result.get().equals(buttonTypeYes)) {
                     saveAction();
-                } else if (!result.get().equals(buttonTypeNo)) {
+                } else if (!result.isPresent() || !result.get().equals(buttonTypeNo)) {
                     event.consume();
                 }
             }
