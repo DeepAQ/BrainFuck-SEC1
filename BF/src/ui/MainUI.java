@@ -38,8 +38,9 @@ public class MainUI extends Stage {
             onFileCloseAllAction(null);
             if (tabPane.getTabs().isEmpty()) {
                 Platform.exit();
+            } else {
+                event.consume();
             }
-            event.consume();
         });
 
         if (!DataMgr.data.theme.isEmpty()) {

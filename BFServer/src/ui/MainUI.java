@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,7 +23,7 @@ public class MainUI extends Stage {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUI.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        this.setScene(new Scene(root, 600, 450));
+        this.setScene(new Scene(root));
         this.setTitle("BrainFuck Server");
         this.setup();
     }
@@ -75,5 +76,10 @@ public class MainUI extends Stage {
             btnStartStop.setSelected(false);
             btnStartStop.setText("Start");
         }
+    }
+
+    @FXML
+    protected void onUserManageClicked(ActionEvent t) throws Exception {
+        new UserManageUI().show();
     }
 }

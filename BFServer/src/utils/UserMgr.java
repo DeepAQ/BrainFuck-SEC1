@@ -2,6 +2,7 @@ package utils;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by adn55 on 16/5/19.
@@ -36,6 +37,10 @@ public class UserMgr {
 
     public static String getUsernameBySessionId(String sessionId) {
         return sessionIds.get(sessionId);
+    }
+
+    public static Set<String> getUserList() {
+        return DataMgr.data.users.keySet();
     }
 
     public static int addUser(String username, String password) {

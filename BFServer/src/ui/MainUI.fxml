@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
          <Menu mnemonicParsing="false" text="File">
@@ -17,39 +17,51 @@
          <top>
             <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                <Tab text="Settings">
-                  <HBox>
-                     <padding>
-                        <Insets bottom="5.0" left="10.0" top="5.0"/>
-                     </padding>
-                     <Label text="Listening port">
-                        <HBox.margin>
-                           <Insets top="4.0"/>
-                        </HBox.margin>
-                     </Label>
-                     <TextField fx:id="inputPort" prefHeight="23.0" prefWidth="70.0" promptText="port"
-                                text="8081">
-                        <HBox.margin>
-                           <Insets left="5.0"/>
-                        </HBox.margin>
-                     </TextField>
-                     <ToggleButton fx:id="btnStartStop" mnemonicParsing="false"
-                                   onMouseClicked="#onStartStopClicked" prefHeight="23.0" prefWidth="60.0"
-                                   text="Start">
-                        <HBox.margin>
-                           <Insets left="5.0"/>
-                        </HBox.margin>
-                     </ToggleButton>
-                     <Label text="Log level">
-                        <HBox.margin>
-                           <Insets left="10.0" top="4.0"/>
-                        </HBox.margin>
-                     </Label>
-                     <ChoiceBox fx:id="choiceLogLevel">
-                        <HBox.margin>
-                           <Insets left="5.0"/>
-                        </HBox.margin>
-                     </ChoiceBox>
-                  </HBox>
+                  <VBox>
+                     <HBox>
+                        <padding>
+                           <Insets bottom="5.0" left="10.0" top="5.0"/>
+                        </padding>
+                        <Label text="Listening port">
+                           <HBox.margin>
+                              <Insets top="4.0"/>
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="inputPort" prefHeight="23.0" prefWidth="70.0" promptText="port"
+                                   text="8081">
+                           <HBox.margin>
+                              <Insets left="5.0"/>
+                           </HBox.margin>
+                        </TextField>
+                        <ToggleButton fx:id="btnStartStop" mnemonicParsing="false"
+                                      onMouseClicked="#onStartStopClicked" prefHeight="23.0" prefWidth="60.0"
+                                      text="Start">
+                           <HBox.margin>
+                              <Insets left="5.0"/>
+                           </HBox.margin>
+                        </ToggleButton>
+                        <Label text="Log level">
+                           <HBox.margin>
+                              <Insets left="10.0" top="4.0"/>
+                           </HBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="choiceLogLevel">
+                           <HBox.margin>
+                              <Insets left="5.0"/>
+                           </HBox.margin>
+                        </ChoiceBox>
+                     </HBox>
+                     <HBox>
+                        <VBox.margin>
+                           <Insets bottom="5.0"/>
+                        </VBox.margin>
+                        <Button mnemonicParsing="false" onAction="#onUserManageClicked" text="User management">
+                           <HBox.margin>
+                              <Insets left="10.0"/>
+                           </HBox.margin>
+                        </Button>
+                     </HBox>
+                  </VBox>
                </Tab>
             </TabPane>
          </top>
