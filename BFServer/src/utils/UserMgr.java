@@ -16,14 +16,14 @@ public class UserMgr {
     private static final HashMap<String, String> sessionIds = new HashMap<>();
 
     public static String newSessionId(String username) {
-        username = username.toLowerCase();
+        username = username.toLowerCase().trim();
         String sessionId = hash(System.currentTimeMillis() + "" + Math.random());
         sessionIds.put(sessionId, username);
         return sessionId;
     }
 
     public static int checkLogin(String username, String pwdhash) {
-        username = username.toLowerCase();
+        username = username.toLowerCase().trim();
         if (DataMgr.data.users.containsKey(username)) {
             if (DataMgr.data.users.get(username).equals(pwdhash)) {
                 return RESULT_OK;
@@ -44,7 +44,7 @@ public class UserMgr {
     }
 
     public static int addUser(String username, String password) {
-        username = username.toLowerCase();
+        username = username.toLowerCase().trim();
         if (DataMgr.data.users.containsKey(username)) {
             return RESULT_USER_EXISTS;
         } else {
@@ -55,7 +55,7 @@ public class UserMgr {
     }
 
     public static int delUser(String username) {
-        username = username.toLowerCase();
+        username = username.toLowerCase().trim();
         if (DataMgr.data.users.containsKey(username)) {
             DataMgr.data.users.remove(username);
             DataMgr.saveToFile();
@@ -66,7 +66,7 @@ public class UserMgr {
     }
 
     public static int changePassword(String username, String oldPwdHash, String newPwdHash) {
-        username = username.toLowerCase();
+        username = username.toLowerCase().trim();
         if (DataMgr.data.users.containsKey(username)) {
             if (DataMgr.data.users.get(username).equals(oldPwdHash)) {
                 return resetPassword(username, newPwdHash);
@@ -79,7 +79,7 @@ public class UserMgr {
     }
 
     public static int resetPassword(String username, String newPwdHash) {
-        username = username.toLowerCase();
+        username = username.toLowerCase().trim();
         if (DataMgr.data.users.containsKey(username)) {
             DataMgr.data.users.remove(username);
             DataMgr.data.users.put(username, newPwdHash);

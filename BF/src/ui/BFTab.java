@@ -199,10 +199,10 @@ class BFTab extends Tab {
     public void runAction() {
         String code = textCode.getText();
         String input = textInput.getText();
-        if (code.isEmpty()) return;
         String output;
         try {
-            output = SessionMgr.execute(code, input);
+            String[] result = SessionMgr.execute(code, input);
+            output = result[0] + "\n====================\nExecution success, used " + result[1] + "ms";
         } catch (Exception e) {
             output = "Execution error:\n" + e.getMessage();
         }

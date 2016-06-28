@@ -97,7 +97,7 @@ public class SessionMgr {
 
     // Code execute
 
-    public static String execute(String code, String input) throws Exception {
+    public static String[] execute(String code, String input) throws Exception {
         String encCode = URLEncoder.encode(URLEncoder.encode(code, "utf-8"), "utf-8");
         String encInput = URLEncoder.encode(URLEncoder.encode(input, "utf-8"), "utf-8");
         String serverResp = NetUtils.getURL(host + "/io/execute?sessid=" + sessionId + "&code=" + encCode + "&input=" + encInput);
@@ -105,7 +105,7 @@ public class SessionMgr {
         if (jsonObj.getInt("result") < 0) {
             throw new Exception(jsonObj.getString("errmsg"));
         } else {
-            return jsonObj.getString("output");
+            return new String[]{jsonObj.getString("output"), jsonObj.getString("time")};
         }
     }
 

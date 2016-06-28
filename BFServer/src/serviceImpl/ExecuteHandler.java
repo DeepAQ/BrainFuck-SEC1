@@ -43,8 +43,10 @@ public class ExecuteHandler implements HttpHandler {
 
         JSONStringer json = new JSONStringer();
         json.object();
+        long usedTime = System.currentTimeMillis();
         ExecuteServiceImpl executeService = new ExecuteServiceImpl();
         String output = executeService.execute(code, input);
+        usedTime = System.currentTimeMillis() - usedTime;
         if (output == null) {
             json.key("result").value(-1);
             json.key("errmsg").value(executeService.errorMessage);
@@ -52,9 +54,10 @@ public class ExecuteHandler implements HttpHandler {
             json.key("result").value(0);
             json.key("output").value(output);
         }
+        json.key("time").value(Long.toString(usedTime));
         json.endObject();
         String response = json.toString();
-        LogUtils.log("D", getClass().getSimpleName(), "Execute result is \"" + output + "\"");
+        LogUtils.log("D", getClass().getSimpleName(), "Execute used " + usedTime + " ms");
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
