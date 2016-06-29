@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
+        <MenuBar>
             <Menu mnemonicParsing="false" text="File">
                 <MenuItem mnemonicParsing="false" onAction="#onFileNewAction" text="New">
                     <accelerator>
@@ -129,6 +129,6 @@
         </MenuBar>
     </top>
     <center>
-        <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER" />
+        <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS"/>
     </center>
 </BorderPane>
