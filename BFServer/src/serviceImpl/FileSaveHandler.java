@@ -42,12 +42,18 @@ public class FileSaveHandler implements HttpHandler {
             }
         }
         String username = UserMgr.getUsernameBySessionId(sessid);
-        if (username == null) return;
-        if (filename == null) return;
+        if (username == null || filename == null) {
+            httpExchange.sendResponseHeaders(403, 0);
+            httpExchange.close();
+            return;
+        }
 
         JSONStringer json = new JSONStringer();
         json.object();
         try {
+            if (filename.matches(".*[\\\\/:*?\"<>|.].*")) {
+                throw new Exception("Filename cannot contain one of these characters: <,>,/,\\,|,:,\",*,?,.");
+            }
             String version = new SimpleDateFormat("yyMMdd-HHmmss").format(new Date());
             String path = "objects/" + username + "/" + filename;
             File tmpFile = new File(path);
@@ -71,10 +77,10 @@ public class FileSaveHandler implements HttpHandler {
             LogUtils.logE(e);
         }
         json.endObject();
-        String response = json.toString();
-        httpExchange.sendResponseHeaders(200, response.length());
+        byte[] response = json.toString().getBytes();
+        httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 }

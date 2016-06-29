@@ -39,7 +39,12 @@ public class UserChangePasswordHandler implements HttpHandler {
             }
         }
         String username = UserMgr.getUsernameBySessionId(sessid);
-        if (username == null) return;
+        if (username == null) {
+            httpExchange.sendResponseHeaders(403, 0);
+            httpExchange.close();
+            return;
+        }
+
         int result = UserMgr.changePassword(username, oldPwdhash, newPwdhash);
         JSONStringer json = new JSONStringer();
         json.object();
@@ -64,10 +69,10 @@ public class UserChangePasswordHandler implements HttpHandler {
             LogUtils.log("D", getClass().getSimpleName(), username + " change password succeeded");
         }
         json.endObject();
-        String response = json.toString();
-        httpExchange.sendResponseHeaders(200, response.length());
+        byte[] response = json.toString().getBytes();
+        httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 }

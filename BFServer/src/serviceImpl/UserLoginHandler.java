@@ -31,6 +31,7 @@ public class UserLoginHandler implements HttpHandler {
                 }
             }
         }
+
         int result = UserMgr.checkLogin(username, pwdhash);
         JSONStringer json = new JSONStringer();
         json.object();
@@ -58,10 +59,10 @@ public class UserLoginHandler implements HttpHandler {
             LogUtils.log("D", getClass().getSimpleName(), username + " login failed: " + errorMsg);
         }
         json.endObject();
-        String response = json.toString();
-        httpExchange.sendResponseHeaders(200, response.length());
+        byte[] response = json.toString().getBytes();
+        httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 }

@@ -39,7 +39,11 @@ public class ExecuteHandler implements HttpHandler {
                 }
             }
         }
-        if (UserMgr.getUsernameBySessionId(sessid) == null) return;
+        if (UserMgr.getUsernameBySessionId(sessid) == null) {
+            httpExchange.sendResponseHeaders(403, 0);
+            httpExchange.close();
+            return;
+        }
 
         JSONStringer json = new JSONStringer();
         json.object();
@@ -56,11 +60,11 @@ public class ExecuteHandler implements HttpHandler {
         }
         json.key("time").value(Long.toString(usedTime));
         json.endObject();
-        String response = json.toString();
         LogUtils.log("D", getClass().getSimpleName(), "Execute used " + usedTime + " ms");
-        httpExchange.sendResponseHeaders(200, response.length());
+        byte[] response = json.toString().getBytes();
+        httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 }

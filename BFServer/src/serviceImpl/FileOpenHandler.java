@@ -38,8 +38,11 @@ public class FileOpenHandler implements HttpHandler {
             }
         }
         String username = UserMgr.getUsernameBySessionId(sessid);
-        if (username == null) return;
-        if (filename == null || version == null) return;
+        if (username == null || filename == null || version == null) {
+            httpExchange.sendResponseHeaders(403, 0);
+            httpExchange.close();
+            return;
+        }
 
         JSONStringer json = new JSONStringer();
         json.object();
@@ -63,10 +66,10 @@ public class FileOpenHandler implements HttpHandler {
             LogUtils.logE(e);
         }
         json.endObject();
-        String response = json.toString();
-        httpExchange.sendResponseHeaders(200, response.length());
+        byte[] response = json.toString().getBytes();
+        httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 }

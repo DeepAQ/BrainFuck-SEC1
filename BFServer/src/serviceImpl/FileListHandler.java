@@ -28,7 +28,11 @@ public class FileListHandler implements HttpHandler {
             }
         }
         String username = UserMgr.getUsernameBySessionId(sessid);
-        if (username == null) return;
+        if (username == null) {
+            httpExchange.sendResponseHeaders(403, 0);
+            httpExchange.close();
+            return;
+        }
 
         JSONStringer json = new JSONStringer();
         json.array();
@@ -50,10 +54,10 @@ public class FileListHandler implements HttpHandler {
             }
         }
         json.endArray();
-        String response = json.toString();
-        httpExchange.sendResponseHeaders(200, response.length());
+        byte[] response = json.toString().getBytes();
+        httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 }
