@@ -5,9 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import utils.DataMgr;
 import utils.SessionMgr;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -158,6 +163,20 @@ class BFTab extends Tab {
                 Dialogs.showError(e.getLocalizedMessage());
             }
         }
+    }
+
+    public void exportAction(Stage parent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName(fileName);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("BrainFuck source code", "*.bf"));
+        File file = fileChooser.showSaveDialog(parent);
+        if (file == null) return;
+        try {
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), "utf-8");
+            writer.write(textCode.getText());
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {}
     }
 
     public void cutAction() {

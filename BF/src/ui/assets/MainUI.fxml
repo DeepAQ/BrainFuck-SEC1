@@ -32,6 +32,7 @@
                         <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
+                <MenuItem mnemonicParsing="false" onAction="#onFileExportAction" text="Export…"/>
                 <SeparatorMenuItem mnemonicParsing="false"/>
                 <MenuItem mnemonicParsing="false" onAction="#onFileSaveAllAction" text="Save All">
                     <accelerator>

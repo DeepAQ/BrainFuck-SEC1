@@ -105,6 +105,12 @@ public class MainUI extends Stage {
         closeTab(currentTab);
     }
 
+    @FXML // Close
+    protected void onFileExportAction(ActionEvent t) {
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        currentTab.exportAction(this);
+    }
+
     @FXML // Save All
     protected void onFileSaveAllAction(ActionEvent t) {
         for (Tab tab : tabPane.getTabs()) {
