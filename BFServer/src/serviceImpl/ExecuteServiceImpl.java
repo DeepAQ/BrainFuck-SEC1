@@ -7,15 +7,21 @@ import java.util.Stack;
 import service.ExecuteService;
 
 public class ExecuteServiceImpl implements ExecuteService {
-    String errorMessage = "";
-    String output = "";
-
     private String code, input;
-    private byte[] memory;
     private Stack<Integer> stack;
-    private int memoryPtr, codePtr, inputPtr;
+    private long startTime;
+    String output;
+    byte[] memory;
+    int memoryPtr, codePtr, inputPtr;
 
-    public void init(String code, String input) {
+    ExecuteServiceImpl() {
+    }
+
+    ExecuteServiceImpl(String code, String input) {
+        this.init(code, input);
+    }
+
+    void init(String code, String input) {
         this.code = code;
         this.input = input;
         int maxSize = code.split(">").length;
@@ -28,7 +34,10 @@ public class ExecuteServiceImpl implements ExecuteService {
         output = "";
     }
 
-    public void step() {
+    void step() throws Exception {
+        if (codePtr >= code.length()) {
+            throw new Exception("Debug session has ended");
+        }
         switch (code.charAt(codePtr)) {
             case '>':
                 memoryPtr++;
@@ -75,13 +84,12 @@ public class ExecuteServiceImpl implements ExecuteService {
         codePtr++;
     }
 
-    public void resume() {
-        long startTime = System.currentTimeMillis();
+    void resume() throws Exception {
+        startTime = System.currentTimeMillis();
         while (codePtr < code.length()) {
             step();
             if (System.currentTimeMillis() - startTime > 10000) {
-                errorMessage = "Timeout";
-                return;
+                throw new Exception("Timeout");
             }
         }
     }
@@ -92,11 +100,11 @@ public class ExecuteServiceImpl implements ExecuteService {
 	@Override
 	public String execute(String code, String param) {
         this.init(code, param);
-        this.resume();
-        if (errorMessage.isEmpty()) {
+        try {
+            this.resume();
             return output;
-        } else {
-            return errorMessage;
+        } catch (Exception e) {
+            return "Error: " + e.getLocalizedMessage();
         }
 	}
 }

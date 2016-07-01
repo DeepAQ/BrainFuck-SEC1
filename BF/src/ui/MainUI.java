@@ -205,10 +205,16 @@ public class MainUI extends Stage {
     }
 
     // Run
-    @FXML
+    @FXML // Run
     protected void onRunAction(ActionEvent t) {
         BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
         currentTab.runAction();
+    }
+
+    @FXML // Debug
+    protected void onDebugAction(ActionEvent t) throws Exception {
+        BFTab currentTab = (BFTab) tabPane.getSelectionModel().getSelectedItem();
+        currentTab.debugAction();
     }
 
     // Help

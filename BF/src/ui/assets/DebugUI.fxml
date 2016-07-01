@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<SplitPane dividerPositions="0.8" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+    <BorderPane>
+        <top>
+            <ToolBar>
+                <Button mnemonicParsing="false" onAction="#onStartAction" text="Start"/>
+                <Button mnemonicParsing="false" onAction="#onStepAction" text="Step"/>
+                <Button mnemonicParsing="false" onAction="#onResumeAction" text="Resume"/>
+                <Button mnemonicParsing="false" onAction="#onStopAction" text="Stop"/>
+            </ToolBar>
+        </top>
+        <center>
+            <SplitPane dividerPositions="0.6, 0.8" orientation="VERTICAL">
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <Tab text="Code">
+                        <TextArea fx:id="textCode" editable="false">
+                            <font>
+                                <Font name="Consolas" size="14.0"/>
+                            </font>
+                        </TextArea>
+                    </Tab>
+                </TabPane>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <Tab text="Input">
+                        <TextArea fx:id="textInput" editable="false">
+                            <font>
+                                <Font name="Consolas" size="14.0"/>
+                            </font>
+                        </TextArea>
+                    </Tab>
+                </TabPane>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <Tab text="Output">
+                        <TextArea fx:id="textOutput" editable="false">
+                            <font>
+                                <Font name="Consolas" size="14.0"/>
+                            </font>
+                        </TextArea>
+                    </Tab>
+                </TabPane>
+            </SplitPane>
+        </center>
+    </BorderPane>
+    <TabPane tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Memory">
+            <TextArea fx:id="textMemory" editable="false">
+                <font>
+                  <Font name="Consolas" size="14.0"/>
+                </font>
+            </TextArea>
+        </Tab>
+    </TabPane>
+</SplitPane>

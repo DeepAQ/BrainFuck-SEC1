@@ -109,4 +109,10 @@ public class SessionMgr {
         }
     }
 
+    public static String debug(String action, String code, String input) throws Exception {
+        String encCode = URLEncoder.encode(URLEncoder.encode(code, "utf-8"), "utf-8");
+        String encInput = URLEncoder.encode(URLEncoder.encode(input, "utf-8"), "utf-8");
+        return NetUtils.getURL(host + "/io/debug?sessid=" + sessionId + "&action=" + action + "&code=" + encCode + "&input=" + encInput);
+    }
+
 }

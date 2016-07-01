@@ -228,4 +228,9 @@ class BFTab extends Tab {
         textOutput.setText(output);
     }
 
+    public void debugAction() throws Exception {
+        DebugUI debugUI = new DebugUI(textCode.getText(), textInput.getText());
+        debugUI.show();
+    }
+
 }

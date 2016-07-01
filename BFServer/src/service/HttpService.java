@@ -32,6 +32,7 @@ public class HttpService {
             httpServer.createContext("/io/open", new FileOpenHandler());
             httpServer.createContext("/io/save", new FileSaveHandler());
             httpServer.createContext("/io/execute", new ExecuteHandler());
+            httpServer.createContext("/io/debug", new DebugHandler());
             httpServer.start();
             LogUtils.log("I", "HttpService", "HTTP service started, listening on port " + this.port);
             return true;

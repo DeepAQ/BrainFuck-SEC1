@@ -51,13 +51,8 @@ public class ExecuteHandler implements HttpHandler {
         ExecuteServiceImpl executeService = new ExecuteServiceImpl();
         String output = executeService.execute(code, input);
         usedTime = System.currentTimeMillis() - usedTime;
-        if (output == null) {
-            json.key("result").value(-1);
-            json.key("errmsg").value(executeService.errorMessage);
-        } else {
-            json.key("result").value(0);
-            json.key("output").value(output);
-        }
+        json.key("result").value(0);
+        json.key("output").value(output);
         json.key("time").value(Long.toString(usedTime));
         json.endObject();
         LogUtils.log("D", getClass().getSimpleName(), "Execute used " + usedTime + " ms");
