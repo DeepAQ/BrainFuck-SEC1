@@ -7,17 +7,17 @@
     <BorderPane>
         <top>
             <ToolBar>
-                <Button mnemonicParsing="false" onAction="#onStartAction" text="Start"/>
-                <Button mnemonicParsing="false" onAction="#onStepAction" text="Step"/>
-                <Button mnemonicParsing="false" onAction="#onResumeAction" text="Resume"/>
-                <Button mnemonicParsing="false" onAction="#onStopAction" text="Stop"/>
+                <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onStartAction" text="Start"/>
+                <Button fx:id="btnStep" mnemonicParsing="false" disable="true" onAction="#onStepAction" text="Step"/>
+                <Button fx:id="btnResume" mnemonicParsing="false" disable="true" onAction="#onResumeAction" text="Run to end"/>
+                <Button fx:id="btnStop" mnemonicParsing="false" disable="true" onAction="#onStopAction" text="Stop"/>
             </ToolBar>
         </top>
         <center>
             <SplitPane dividerPositions="0.6, 0.8" orientation="VERTICAL">
                 <TabPane tabClosingPolicy="UNAVAILABLE">
                     <Tab text="Code">
-                        <TextArea fx:id="textCode" editable="false">
+                        <TextArea fx:id="textCode" editable="false" wrapText="true">
                             <font>
                                 <Font name="Consolas" size="14.0"/>
                             </font>

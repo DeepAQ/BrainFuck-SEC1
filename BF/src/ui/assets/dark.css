@@ -1,8 +1,10 @@
-.tab-pane, .menu-bar, .context-menu, .tab, .tab-header-background, .tab-content-area, .text-area {
+.border-pane, .split-pane, .tab-pane,
+.tab, .tab-header-background, .tab-content-area,
+.menu-bar, .context-menu, .text-area, .tool-bar {
     -fx-background-color: #3c3f41;
 }
 
-.tab:selected {
+.tab:selected, .button {
     -fx-background-color: #555555;
 }
 
@@ -10,7 +12,7 @@
     -fx-background-color: #555555;
 }
 
-.label, .tab-label {
+.label, .tab-label, .button {
     -fx-text-fill: #cccccc;
 }
 

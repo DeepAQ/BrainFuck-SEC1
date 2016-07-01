@@ -18,7 +18,6 @@ public class DebugHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", getClass().getSimpleName(), "New /io/debug request with query " + query);
         String sessid = "";
         String action = "";
         String code = "";
@@ -62,6 +61,7 @@ public class DebugHandler implements HttpHandler {
             if (action.equals("start")) {
                 DebugMgr.debugSessions.remove(sessid);
                 DebugMgr.debugSessions.put(sessid, new ExecuteServiceImpl(code, input));
+                LogUtils.log("D", getClass().getSimpleName(), "Started new debug session with query " + query);
             }
             try {
                 if (!DebugMgr.debugSessions.containsKey(sessid)) {

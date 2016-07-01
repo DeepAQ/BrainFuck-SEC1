@@ -14,8 +14,7 @@ public class ExecuteServiceImpl implements ExecuteService {
     byte[] memory;
     int memoryPtr, codePtr, inputPtr;
 
-    ExecuteServiceImpl() {
-    }
+    ExecuteServiceImpl() {}
 
     ExecuteServiceImpl(String code, String input) {
         this.init(code, input);
@@ -36,7 +35,7 @@ public class ExecuteServiceImpl implements ExecuteService {
 
     void step() throws Exception {
         if (codePtr >= code.length()) {
-            throw new Exception("Debug session has ended");
+            throw new Exception("The program has ended");
         }
         switch (code.charAt(codePtr)) {
             case '>':
