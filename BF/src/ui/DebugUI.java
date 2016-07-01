@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONArray;
@@ -38,6 +40,11 @@ public class DebugUI extends Stage {
                 scene.getStylesheets().add(getClass().getResource("assets/deepdark.css").toString());
                 break;
         }
+        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.F8), () -> {
+            if (!btnStep.isDisable()) {
+                onStepAction(null);
+            }
+        });
 
         this.code = code;
         this.input = input;
@@ -60,11 +67,12 @@ public class DebugUI extends Stage {
             }
             String codeText = "";
             for (int i = 0; i < code.length(); i++) {
-                if (code.substring(i, i+1).trim().isEmpty()) continue;
+                String codeChar = code.substring(i, i+1);
+                if (codeChar.trim().isEmpty()) codeChar = " ";
                 if (i == codePtr) {
-                    codeText = codeText + "{" + code.charAt(i) + "}";
+                    codeText = codeText + "{" + codeChar + "}";
                 } else {
-                    codeText = codeText + " " + code.charAt(i) + " ";
+                    codeText = codeText + " " + codeChar + " ";
                 }
             }
             textCode.setText(codeText);
@@ -90,7 +98,7 @@ public class DebugUI extends Stage {
         if (jsonObj.has("memptr") && jsonObj.has("memory")) {
             int ptr = jsonObj.getInt("memptr");
             JSONArray memory = jsonObj.getJSONArray("memory");
-            String memoryText = "";
+            String memoryText = "  Addr\tValue\n";
             for (int i = 0; i < memory.length(); i++) {
                 if (i == ptr) {
                     memoryText = memoryText + "-> ";
@@ -98,8 +106,8 @@ public class DebugUI extends Stage {
                     memoryText = memoryText + "   ";
                 }
                 String memChar = Character.toString((char) memory.getInt(i));
-                if (!memChar.isEmpty() && memChar.trim().isEmpty()) {
-                    memChar = " ";
+                if (memChar.trim().isEmpty()) {
+                    memChar = "";
                 }
                 memoryText = memoryText + i + "\t" + memory.get(i) + " '" + memChar + "'\n";
             }

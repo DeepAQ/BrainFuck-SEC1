@@ -11,6 +11,7 @@ import java.net.URLEncoder;
 public class SessionMgr {
     public static String host = "http://localhost:8081";
     public static String username = "";
+    private static String pwdhash = "";
     private static String sessionId = "";
 
     // User login & logout
@@ -28,7 +29,12 @@ public class SessionMgr {
         } else {
             sessionId = jsonObj.getString("sessid");
             SessionMgr.username = username;
+            SessionMgr.pwdhash = pwdhash;
         }
+    }
+
+    public static void refreshSession() throws Exception {
+        loginWithPwdhash(username, pwdhash);
     }
 
     public static void logout() {

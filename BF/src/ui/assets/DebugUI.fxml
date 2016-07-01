@@ -8,7 +8,7 @@
         <top>
             <ToolBar>
                 <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onStartAction" text="Start"/>
-                <Button fx:id="btnStep" mnemonicParsing="false" disable="true" onAction="#onStepAction" text="Step"/>
+                <Button fx:id="btnStep" mnemonicParsing="false" disable="true" onAction="#onStepAction" text="Step (F8)"/>
                 <Button fx:id="btnResume" mnemonicParsing="false" disable="true" onAction="#onResumeAction" text="Run to end"/>
                 <Button fx:id="btnStop" mnemonicParsing="false" disable="true" onAction="#onStopAction" text="Stop"/>
             </ToolBar>

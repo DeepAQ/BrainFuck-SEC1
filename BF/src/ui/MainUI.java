@@ -246,6 +246,16 @@ public class MainUI extends Stage {
         }
     }
 
+    @FXML
+    protected void onUserRefreshAction(ActionEvent t) {
+        try {
+            SessionMgr.refreshSession();
+            Dialogs.showInfo("Refresh success");
+        } catch (Exception e) {
+            Dialogs.showError(e.getLocalizedMessage());
+        }
+    }
+
     @FXML // Change password
     protected void onUserChangePasswordAction(ActionEvent t) throws Exception {
         ChangePasswordUI changeUI = new ChangePasswordUI();

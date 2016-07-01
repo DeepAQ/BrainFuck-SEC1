@@ -2,6 +2,7 @@ package ui;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -61,7 +63,7 @@ class FileOpenUI extends Stage {
             }
         });
 
-        this.getFileList();
+        this.setOnShown(event -> getFileList());
     }
 
     private void getFileList() {
@@ -84,6 +86,7 @@ class FileOpenUI extends Stage {
         } catch (Exception e) {
             Dialogs.showError(e.getLocalizedMessage());
             this.close();
+            return;
         }
         if (tableFiles.getItems().isEmpty()) {
             Dialogs.showError("No files saved, try to create a new one~");

@@ -130,6 +130,7 @@
             </Menu>
             <Menu fx:id="menuUser" mnemonicParsing="false" text="User">
                 <MenuItem mnemonicParsing="false" onAction="#onUserLogoutAction" text="Logout"/>
+                <MenuItem mnemonicParsing="false" onAction="#onUserRefreshAction" text="Refresh session"/>
                 <MenuItem mnemonicParsing="false" onAction="#onUserChangePasswordAction" text="Change password…"/>
             </Menu>
         </MenuBar>
