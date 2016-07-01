@@ -43,6 +43,7 @@ class ChangePasswordUI extends Stage {
         if (oldPassword.isEmpty() || newPassword.isEmpty() || newPassword2.isEmpty()) return;
         if (!newPassword.equals(newPassword2)) {
             Dialogs.showError("New passwords does not match!");
+            return;
         }
         try {
             SessionMgr.changePassword(oldPassword, newPassword);

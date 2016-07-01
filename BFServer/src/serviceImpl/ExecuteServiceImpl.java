@@ -9,7 +9,6 @@ import service.ExecuteService;
 public class ExecuteServiceImpl implements ExecuteService {
     private String code, input;
     private Stack<Integer> stack;
-    private long startTime;
     String output;
     byte[] memory;
     int memoryPtr, codePtr, inputPtr;
@@ -20,7 +19,7 @@ public class ExecuteServiceImpl implements ExecuteService {
         this.init(code, input);
     }
 
-    void init(String code, String input) {
+    private void init(String code, String input) {
         this.code = code;
         this.input = input;
         int maxSize = code.split(">").length;
@@ -84,7 +83,7 @@ public class ExecuteServiceImpl implements ExecuteService {
     }
 
     void resume() throws Exception {
-        startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         while (codePtr < code.length()) {
             step();
             if (System.currentTimeMillis() - startTime > 10000) {

@@ -78,7 +78,8 @@ class BFTab extends Tab {
     @FXML
     private TextArea textCode, textInput, textOutput;
 
-    public String fileName, fileVersion;
+    public String fileName;
+    private String fileVersion;
     private String originalCode = "";
     public boolean modified = false;
 
@@ -176,7 +177,7 @@ class BFTab extends Tab {
             writer.write(textCode.getText());
             writer.flush();
             writer.close();
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
 
     public void cutAction() {

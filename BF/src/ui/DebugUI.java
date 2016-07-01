@@ -20,7 +20,7 @@ import utils.SessionMgr;
 /**
  * Created by adn55 on 16/7/1.
  */
-public class DebugUI extends Stage {
+class DebugUI extends Stage {
 
     public DebugUI(String code, String input) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assets/DebugUI.fxml"));
@@ -40,11 +40,7 @@ public class DebugUI extends Stage {
                 scene.getStylesheets().add(getClass().getResource("assets/deepdark.css").toString());
                 break;
         }
-        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.F8), () -> {
-            if (!btnStep.isDisable()) {
-                onStepAction(null);
-            }
-        });
+        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.F8), btnStep::fire);
 
         this.code = code;
         this.input = input;
