@@ -61,11 +61,11 @@ public class DebugHandler implements HttpHandler {
             if (action.equals("start")) {
                 DebugMgr.debugSessions.remove(sessid);
                 DebugMgr.debugSessions.put(sessid, new ExecuteServiceImpl(code, input));
-                LogUtils.log("D", getClass().getSimpleName(), "Started new debug session with query " + query);
+                LogUtils.log("调试", "调试处理程序", "开始了新的调试会话");
             }
             try {
                 if (!DebugMgr.debugSessions.containsKey(sessid)) {
-                    throw new Exception("Debug session does not exist!");
+                    throw new Exception("调试会话不存在！");
                 }
                 ExecuteServiceImpl session = DebugMgr.debugSessions.get(sessid);
                 if (action.equals("step")) {

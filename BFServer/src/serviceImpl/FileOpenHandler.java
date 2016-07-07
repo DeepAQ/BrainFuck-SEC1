@@ -15,7 +15,7 @@ public class FileOpenHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", getClass().getSimpleName(), "New /io/open request with query " + query);
+        LogUtils.log("调试", "文件打开处理程序", "收到新的打开文件请求");
         String sessid = "";
         String filename = "";
         String version = "";
@@ -59,7 +59,7 @@ public class FileOpenHandler implements HttpHandler {
             }
             json.key("result").value(0);
             json.key("code").value(code.toString());
-            LogUtils.log("D", getClass().getSimpleName(), "Read from file " + path + "/" + version + ".bf");
+            LogUtils.log("调试", "文件打开处理程序", "读取文件 " + path + "/" + version + ".bf");
         } catch (Exception e) {
             json.key("result").value(-1);
             json.key("errmsg").value(e.getLocalizedMessage());

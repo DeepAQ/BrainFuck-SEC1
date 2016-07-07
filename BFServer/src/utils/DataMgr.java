@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class DataMgr {
     public static Data data = new Data();
-    private static final String fileName = "BFServer.dat";
+    private static final String fileName = "操脑服务器.数据";
 
     public static void loadFromFile() {
         try {
@@ -16,7 +16,7 @@ public class DataMgr {
             data = (Data) is.readObject();
             is.close();
         } catch (Exception e) {
-            LogUtils.log("W", "DataMgr", "Cannot read data from file, trying to create a new one.");
+            LogUtils.log("警告", "数据管理器", "读取数据文件失败，尝试创建新文件。");
             UserMgr.addUser("demo", "demo");
             saveToFile();
         }
@@ -29,7 +29,7 @@ public class DataMgr {
             os.close();
         } catch (Exception e) {
             LogUtils.logE(e);
-            LogUtils.log("E", "DataMgr", "Save data to file failed!");
+            LogUtils.log("错误", "数据管理器", "保存数据文件失败！");
         }
     }
 }

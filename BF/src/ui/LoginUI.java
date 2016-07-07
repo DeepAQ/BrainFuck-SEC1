@@ -28,7 +28,7 @@ public class LoginUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("Login");
+        this.setTitle("登录");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);
@@ -71,7 +71,7 @@ public class LoginUI extends Stage {
             this.close();
             loginSuccessHandler.onLoginSuccess();
         } catch (Exception e) {
-            labelStatus.setText("Login failed: " + e.getMessage());
+            labelStatus.setText("登录失败：" + e.getMessage());
         }
     }
 

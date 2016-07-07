@@ -33,7 +33,7 @@ class FileOpenUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("Open");
+        this.setTitle("打开");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);
@@ -87,7 +87,7 @@ class FileOpenUI extends Stage {
             return;
         }
         if (tableFiles.getItems().isEmpty()) {
-            Dialogs.showError("No files saved, try to create a new one~");
+            Dialogs.showError("你并没有文件！");
             this.close();
         } else {
             tableFiles.getSortOrder().clear();
@@ -158,7 +158,7 @@ class FileOpenUI extends Stage {
         }
 
         public String getFilename() {
-            return filename.get() + ".bf";
+            return filename.get() + ".操脑";
         }
 
         public String getRealFilename() {

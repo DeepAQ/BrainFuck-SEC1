@@ -7,16 +7,16 @@
     <BorderPane>
         <top>
             <ToolBar>
-                <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onStartAction" text="Start"/>
-                <Button fx:id="btnStep" mnemonicParsing="false" disable="true" onAction="#onStepAction" text="Step (F8)"/>
-                <Button fx:id="btnResume" mnemonicParsing="false" disable="true" onAction="#onResumeAction" text="Run to end"/>
-                <Button fx:id="btnStop" mnemonicParsing="false" disable="true" onAction="#onStopAction" text="Stop"/>
+                <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onStartAction" text="开始运行"/>
+                <Button fx:id="btnStep" mnemonicParsing="false" disable="true" onAction="#onStepAction" text="单步运行 (功能键八)"/>
+                <Button fx:id="btnResume" mnemonicParsing="false" disable="true" onAction="#onResumeAction" text="运行到结束"/>
+                <Button fx:id="btnStop" mnemonicParsing="false" disable="true" onAction="#onStopAction" text="停止运行"/>
             </ToolBar>
         </top>
         <center>
             <SplitPane dividerPositions="0.6, 0.8" orientation="VERTICAL">
                 <TabPane tabClosingPolicy="UNAVAILABLE">
-                    <Tab text="Code">
+                    <Tab text="源代码">
                         <TextArea fx:id="textCode" editable="false" wrapText="true">
                             <font>
                                 <Font name="Consolas" size="14.0"/>
@@ -25,7 +25,7 @@
                     </Tab>
                 </TabPane>
                 <TabPane tabClosingPolicy="UNAVAILABLE">
-                    <Tab text="Input">
+                    <Tab text="输入">
                         <TextArea fx:id="textInput" editable="false">
                             <font>
                                 <Font name="Consolas" size="14.0"/>
@@ -34,7 +34,7 @@
                     </Tab>
                 </TabPane>
                 <TabPane tabClosingPolicy="UNAVAILABLE">
-                    <Tab text="Output">
+                    <Tab text="输出">
                         <TextArea fx:id="textOutput" editable="false">
                             <font>
                                 <Font name="Consolas" size="14.0"/>
@@ -46,7 +46,7 @@
         </center>
     </BorderPane>
     <TabPane tabClosingPolicy="UNAVAILABLE">
-        <Tab text="Memory">
+        <Tab text="存储器">
             <TextArea fx:id="textMemory" editable="false">
                 <font>
                   <Font name="Consolas" size="14.0"/>

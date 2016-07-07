@@ -16,7 +16,7 @@ public class UserChangePasswordHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", getClass().getSimpleName(), "New /user/changepassword request with query " + query);
+        LogUtils.log("调试", "用户密码修改处理程序", "收到新的密码修改请求");
         String sessid = "";
         String oldPwdhash = "";
         String newPwdhash = "";
@@ -54,19 +54,19 @@ public class UserChangePasswordHandler implements HttpHandler {
             String errorMsg;
             switch (result) {
                 case UserMgr.RESULT_USER_NOEXIST:
-                    errorMsg = "User does not exist";
+                    errorMsg = "用户不存在";
                     break;
                 case UserMgr.RESULT_PASSWORD_INCORRECT:
-                    errorMsg = "Old password incorrect";
+                    errorMsg = "旧密码不正确";
                     break;
                 default:
-                    errorMsg = "Server error";
+                    errorMsg = "服务器错误";
                     break;
             }
             json.key("errmsg").value(errorMsg);
-            LogUtils.log("D", getClass().getSimpleName(), username + " change password failed: " + errorMsg);
+            LogUtils.log("调试", "用户密码修改处理程序", username + " 修改密码失败：" + errorMsg);
         } else {
-            LogUtils.log("D", getClass().getSimpleName(), username + " change password succeeded");
+            LogUtils.log("调试", "用户密码修改处理程序", username + " 修改密码成功");
         }
         json.endObject();
         byte[] response = json.toString().getBytes();

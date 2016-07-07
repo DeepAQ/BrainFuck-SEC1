@@ -7,7 +7,7 @@ import java.io.*;
  */
 public class DataMgr {
     public static BFData data = new BFData();
-    private static final String fileName = "BFClient.dat";
+    private static final String fileName = "操脑客户端.数据";
 
     public static void loadFromFile() {
         try {
@@ -26,7 +26,7 @@ public class DataMgr {
             os.close();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Save data to file failed!");
+            System.out.println("保存数据文件失败！");
         }
     }
 }

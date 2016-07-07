@@ -17,7 +17,7 @@ class AboutUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("About");
+        this.setTitle("关于");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);

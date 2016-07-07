@@ -15,10 +15,10 @@ class Dialogs {
     }
 
     public static void showError(String message) {
-        showDialog(Alert.AlertType.ERROR, "Error", null, message);
+        showDialog(Alert.AlertType.ERROR, "错误", null, message);
     }
 
     public static void showInfo(String message) {
-        showDialog(Alert.AlertType.INFORMATION, "Info", null, message);
+        showDialog(Alert.AlertType.INFORMATION, "信息", null, message);
     }
 }

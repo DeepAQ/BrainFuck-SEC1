@@ -6,132 +6,132 @@
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <MenuBar>
-            <Menu mnemonicParsing="false" text="File">
-                <MenuItem mnemonicParsing="false" onAction="#onFileNewAction" text="New">
+            <Menu mnemonicParsing="false" text="文件">
+                <MenuItem mnemonicParsing="false" onAction="#onFileNewAction" text="新建">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileOpenAction" text="Open…">
+                <MenuItem mnemonicParsing="false" onAction="#onFileOpenAction" text="打开…">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileSaveAction" text="Save">
+                <MenuItem mnemonicParsing="false" onAction="#onFileSaveAction" text="保存">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileSaveAsAction" text="Save As…">
+                <MenuItem mnemonicParsing="false" onAction="#onFileSaveAsAction" text="另存为…">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileCloseAction" text="Close">
+                <MenuItem mnemonicParsing="false" onAction="#onFileCloseAction" text="关闭">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileExportAction" text="Export…"/>
+                <MenuItem mnemonicParsing="false" onAction="#onFileExportAction" text="导出…"/>
                 <SeparatorMenuItem mnemonicParsing="false"/>
-                <MenuItem mnemonicParsing="false" onAction="#onFileSaveAllAction" text="Save All">
+                <MenuItem mnemonicParsing="false" onAction="#onFileSaveAllAction" text="保存全部">
                     <accelerator>
                         <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileCloseAllAction" text="Close All">
+                <MenuItem mnemonicParsing="false" onAction="#onFileCloseAllAction" text="关闭全部">
                     <accelerator>
                         <KeyCodeCombination alt="DOWN" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onFileExitAction" text="Exit"/>
+                <MenuItem mnemonicParsing="false" onAction="#onFileExitAction" text="退出"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
+            <Menu mnemonicParsing="false" text="编辑">
                 <items>
-                    <MenuItem fx:id="editUndo" mnemonicParsing="false" onAction="#onEditAction" text="Undo">
+                    <MenuItem fx:id="editUndo" mnemonicParsing="false" onAction="#onEditAction" text="撤销">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="editRedo" mnemonicParsing="false" onAction="#onEditAction" text="Redo">
+                    <MenuItem fx:id="editRedo" mnemonicParsing="false" onAction="#onEditAction" text="重做">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
                     <SeparatorMenuItem mnemonicParsing="false"/>
-                    <MenuItem fx:id="editSmartUndo" mnemonicParsing="false" onAction="#onEditAction" text="Smart Undo">
+                    <MenuItem fx:id="editSmartUndo" mnemonicParsing="false" onAction="#onEditAction" text="杀马特撤销">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="DOWN" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="editSmartRedo" mnemonicParsing="false" onAction="#onEditAction" text="Smart Redo">
+                    <MenuItem fx:id="editSmartRedo" mnemonicParsing="false" onAction="#onEditAction" text="杀马特重做">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="DOWN" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
                     <SeparatorMenuItem mnemonicParsing="false"/>
-                    <MenuItem fx:id="editCut" mnemonicParsing="false" onAction="#onEditAction" text="Cut">
+                    <MenuItem fx:id="editCut" mnemonicParsing="false" onAction="#onEditAction" text="剪切">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="editCopy" mnemonicParsing="false" onAction="#onEditAction" text="Copy">
+                    <MenuItem fx:id="editCopy" mnemonicParsing="false" onAction="#onEditAction" text="复制">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="editPaste" mnemonicParsing="false" onAction="#onEditAction" text="Paste">
+                    <MenuItem fx:id="editPaste" mnemonicParsing="false" onAction="#onEditAction" text="粘贴">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                         </accelerator>
                     </MenuItem>
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="View">
-                <Menu mnemonicParsing="false" text="Font size">
+            <Menu mnemonicParsing="false" text="视图">
+                <Menu mnemonicParsing="false" text="字体大小">
                     <RadioMenuItem fx:id="fontSmall" mnemonicParsing="false" onAction="#onViewFontSizeAction"
-                                   text="Small">
+                                   text="小">
                         <toggleGroup>
                             <ToggleGroup fx:id="theme1"/>
                         </toggleGroup>
                     </RadioMenuItem>
                     <RadioMenuItem fx:id="fontMedium" mnemonicParsing="false" onAction="#onViewFontSizeAction"
-                                   text="Medium" toggleGroup="$theme1"/>
+                                   text="中" toggleGroup="$theme1"/>
                     <RadioMenuItem fx:id="fontLarge" mnemonicParsing="false" onAction="#onViewFontSizeAction"
-                                   text="Large" toggleGroup="$theme1"/>
+                                   text="大" toggleGroup="$theme1"/>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Theme">
+                <Menu mnemonicParsing="false" text="主题">
                     <RadioMenuItem fx:id="styleLight" mnemonicParsing="false" onAction="#onViewThemeAction"
-                                   text="Light">
+                                   text="亮色">
                         <toggleGroup>
                             <ToggleGroup fx:id="theme"/>
                         </toggleGroup>
                     </RadioMenuItem>
                     <RadioMenuItem fx:id="styleDark" mnemonicParsing="false" onAction="#onViewThemeAction"
-                                   text="Dark" toggleGroup="$theme"/>
+                                   text="暗色" toggleGroup="$theme"/>
                     <RadioMenuItem fx:id="styleDeepDark" mnemonicParsing="false" onAction="#onViewThemeAction"
-                                   text="Deep Dark" toggleGroup="$theme"/>
+                                   text="深暗色" toggleGroup="$theme"/>
                 </Menu>
             </Menu>
-            <Menu mnemonicParsing="false" text="Run">
-                <MenuItem mnemonicParsing="false" onAction="#onRunAction" text="Run">
+            <Menu mnemonicParsing="false" text="运行">
+                <MenuItem mnemonicParsing="false" onAction="#onRunAction" text="运行">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" onAction="#onDebugAction" text="Debug…">
+                <MenuItem mnemonicParsing="false" onAction="#onDebugAction" text="调试…">
                     <accelerator>
                         <KeyCodeCombination alt="DOWN" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" onAction="#onAboutAction" text="About…"/>
+            <Menu mnemonicParsing="false" text="帮助">
+                <MenuItem mnemonicParsing="false" onAction="#onAboutAction" text="关于…"/>
             </Menu>
-            <Menu fx:id="menuUser" mnemonicParsing="false" text="User">
-                <MenuItem mnemonicParsing="false" onAction="#onUserLogoutAction" text="Logout"/>
-                <MenuItem mnemonicParsing="false" onAction="#onUserRefreshAction" text="Refresh session"/>
-                <MenuItem mnemonicParsing="false" onAction="#onUserChangePasswordAction" text="Change password…"/>
+            <Menu fx:id="menuUser" mnemonicParsing="false" text="用户">
+                <MenuItem mnemonicParsing="false" onAction="#onUserLogoutAction" text="注销"/>
+                <MenuItem mnemonicParsing="false" onAction="#onUserRefreshAction" text="刷新会话"/>
+                <MenuItem mnemonicParsing="false" onAction="#onUserChangePasswordAction" text="修改密码…"/>
             </Menu>
         </MenuBar>
     </top>

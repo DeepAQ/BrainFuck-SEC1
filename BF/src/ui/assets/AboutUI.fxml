@@ -14,6 +14,6 @@
     </center>
     <bottom>
         <TextArea editable="false" prefHeight="60.0"
-                  text="This product contains these third-party open-source softwares:&#10;JSON-java(org.json) - https://github.com/stleary/JSON-java&#10;"/>
+                  text="本产品包含以下第三方开源软件：&#10;爪哇脚本对象标记法-爪哇(组织.爪哇脚本对象标记法) - https://github.com/stleary/JSON-java&#10;"/>
     </bottom>
 </BorderPane>

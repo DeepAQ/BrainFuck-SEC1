@@ -46,12 +46,12 @@ class BFTab extends Tab {
         this.setOnCloseRequest(event -> {
             if (modified) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("File modified");
+                alert.setTitle("文件已修改");
                 alert.setHeaderText(null);
-                alert.setContentText("File \"" + this.getText().replace("* ", "") + "\" has been modified, save it?");
-                ButtonType buttonTypeYes = new ButtonType("Save");
-                ButtonType buttonTypeNo = new ButtonType("Discard");
-                ButtonType buttonTypeCancel = new ButtonType("Cancel");
+                alert.setContentText("文件 \"" + this.getText().replace("* ", "") + "\" 已被修改，是否修改？");
+                ButtonType buttonTypeYes = new ButtonType("保存");
+                ButtonType buttonTypeNo = new ButtonType("舍弃");
+                ButtonType buttonTypeCancel = new ButtonType("取消");
                 alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeCancel);
                 Optional<ButtonType> result = alert.showAndWait();
                 if (!result.isPresent()) {
@@ -117,9 +117,9 @@ class BFTab extends Tab {
             modFlag = "* ";
         }
         if (fileName.isEmpty()) {
-            this.setText(modFlag + "Untitled" + fileVersion + ".bf");
+            this.setText(modFlag + "无标题" + fileVersion + ".操脑");
         } else {
-            this.setText(modFlag + fileName + ".bf (" + fileVersion + ")");
+            this.setText(modFlag + fileName + ".操脑 (" + fileVersion + ")");
         }
     }
 
@@ -147,14 +147,14 @@ class BFTab extends Tab {
 
     public void saveAsAction() {
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Save as");
-        dialog.setHeaderText("Save \"" + this.getText().replace("* ", "") + "\" as");
-        dialog.setContentText("Filename:");
+        dialog.setTitle("另存为");
+        dialog.setHeaderText("将文件 \"" + this.getText().replace("* ", "") + "\" 另存为");
+        dialog.setContentText("文件名：");
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
             String filename = result.get();
             if (filename.isEmpty()) {
-                Dialogs.showError("Filename cannot be empty!");
+                Dialogs.showError("文件名不能为空！");
                 saveAsAction();
                 return;
             }
@@ -169,7 +169,7 @@ class BFTab extends Tab {
     public void exportAction(Stage parent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialFileName(fileName);
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("BrainFuck source code", "*.bf"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("操脑源文件", "*.操脑"));
         File file = fileChooser.showSaveDialog(parent);
         if (file == null) return;
         try {
@@ -222,9 +222,9 @@ class BFTab extends Tab {
         String output;
         try {
             String[] result = SessionMgr.execute(code, input);
-            output = result[0] + "\n====================\nExecution success, used " + result[1] + "ms";
+            output = result[0] + "\n====================\n运行成功，用时 " + result[1] + " 毫秒";
         } catch (Exception e) {
-            output = "Execution error:\n" + e.getMessage();
+            output = "运行错误：\n" + e.getMessage();
         }
         textOutput.setText(output);
     }

@@ -25,7 +25,7 @@ class UserManageUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("User Management");
+        this.setTitle("用户管理");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);
@@ -71,9 +71,9 @@ class UserManageUI extends Stage {
         if (result == 0) {
             inputUsername.clear();
             inputPassword.clear();
-            Dialogs.showInfo("User added!");
+            Dialogs.showInfo("用户已添加！");
         } else {
-            Dialogs.showError("This user already exists!");
+            Dialogs.showError("用户已存在！");
         }
         this.updateList();
     }
@@ -85,9 +85,9 @@ class UserManageUI extends Stage {
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
+        alert.setTitle("确认");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure to delete?\nThis action cannot be undone!");
+        alert.setContentText("你真的要删除吗？这个操作不能撤销！");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             UserMgr.delUser(username);
@@ -103,15 +103,15 @@ class UserManageUI extends Stage {
         }
 
         Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Prompt");
+        dialog.setTitle("提示");
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Password");
+        passwordField.setPromptText("密码");
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(10, 20, 10, 20));
         vBox.setSpacing(10);
-        vBox.getChildren().addAll(new Label("New password :"), passwordField);
+        vBox.getChildren().addAll(new Label("新密码："), passwordField);
         dialog.getDialogPane().setContent(vBox);
         dialog.setResultConverter(param -> {
             if (param == ButtonType.OK) {
@@ -124,7 +124,7 @@ class UserManageUI extends Stage {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent() && !result.get().isEmpty()) {
             UserMgr.resetPassword(username, UserMgr.hash(result.get()));
-            Dialogs.showInfo("Password has been reset.");
+            Dialogs.showInfo("重置密码成功！");
         }
         this.updateList();
     }

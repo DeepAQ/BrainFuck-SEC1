@@ -7,8 +7,8 @@
 <BorderPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <MenuBar>
-            <Menu mnemonicParsing="false" text="File">
-                <MenuItem mnemonicParsing="false" onAction="#onExitAction" text="Exit"/>
+            <Menu mnemonicParsing="false" text="文件">
+                <MenuItem mnemonicParsing="false" onAction="#onExitAction" text="退出程序"/>
             </Menu>
         </MenuBar>
     </top>
@@ -16,13 +16,13 @@
         <BorderPane>
             <top>
                 <TabPane tabClosingPolicy="UNAVAILABLE">
-                    <Tab text="Config">
+                    <Tab text="配置">
                         <VBox>
                             <HBox>
                                 <padding>
                                     <Insets bottom="5.0" left="10.0" top="5.0"/>
                                 </padding>
-                                <Label text="Listening port">
+                                <Label text="监听端口">
                                     <HBox.margin>
                                         <Insets top="4.0"/>
                                     </HBox.margin>
@@ -35,12 +35,12 @@
                                 </TextField>
                                 <ToggleButton fx:id="btnStartStop" mnemonicParsing="false"
                                               onMouseClicked="#onStartStopClicked" prefHeight="23.0" prefWidth="60.0"
-                                              text="Start">
+                                              text="开始">
                                     <HBox.margin>
                                         <Insets left="5.0"/>
                                     </HBox.margin>
                                 </ToggleButton>
-                                <Label text="Log level">
+                                <Label text="日志等级">
                                     <HBox.margin>
                                         <Insets left="10.0" top="4.0"/>
                                     </HBox.margin>
@@ -55,7 +55,7 @@
                                 <VBox.margin>
                                     <Insets bottom="5.0"/>
                                 </VBox.margin>
-                                <Button mnemonicParsing="false" onAction="#onUserManageClicked" text="User management">
+                                <Button mnemonicParsing="false" onAction="#onUserManageClicked" text="用户管理">
                                     <HBox.margin>
                                         <Insets left="10.0"/>
                                     </HBox.margin>
@@ -67,7 +67,7 @@
             </top>
             <center>
                 <TabPane tabClosingPolicy="UNAVAILABLE">
-                    <Tab text="Logs">
+                    <Tab text="日志">
                         <TextArea fx:id="textLogs" editable="false">
                             <font>
                                 <Font name="Consolas" size="12.0"/>
@@ -80,7 +80,7 @@
     </center>
     <bottom>
         <Pane>
-            <Label text="BrainFuck Server v1.0">
+            <Label text="操脑服务器端 版本1.0">
                 <padding>
                     <Insets bottom="5.0" left="10.0" top="5.0"/>
                 </padding>

@@ -34,17 +34,17 @@ public class HttpService {
             httpServer.createContext("/io/execute", new ExecuteHandler());
             httpServer.createContext("/io/debug", new DebugHandler());
             httpServer.start();
-            LogUtils.log("I", "HttpService", "HTTP service started, listening on port " + this.port);
+            LogUtils.log("信息", "超文本传输协议服务", "超文本传输协议服务已启动，监听端口为 " + this.port);
             return true;
         } catch (Exception e) {
-            LogUtils.log("E", e.getClass().getName(), e.getLocalizedMessage());
-            LogUtils.log("E", "HttpService", "HTTP service cannot start!");
+            LogUtils.log("错误", e.getClass().getName(), e.getLocalizedMessage());
+            LogUtils.log("错误", "超文本传输协议服务", "超文本传输协议服务启动失败！");
         }
         return false;
     }
 
     public void stop() {
         httpServer.stop(0);
-        LogUtils.log("I", "HttpService", "HTTP service stopped");
+        LogUtils.log("信息", "超文本传输协议服务", "超文本传输协议服务已停止");
     }
 }

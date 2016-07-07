@@ -24,14 +24,14 @@ public class MainUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("BrainFuck Server");
+        this.setTitle("操脑服务器端");
         this.setup();
     }
 
     private void setup() {
         LogUtils.init(this.textLogs);
 
-        choiceLogLevel.setItems(FXCollections.observableArrayList("Debug", "Info", "Warning", "Error"));
+        choiceLogLevel.setItems(FXCollections.observableArrayList("调试", "信息", "警告", "错误"));
         choiceLogLevel.getSelectionModel().select(0);
         choiceLogLevel.getSelectionModel().selectedIndexProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -69,12 +69,12 @@ public class MainUI extends Stage {
             mainService = new HttpService(port);
             if (mainService.start()) {
                 btnStartStop.setSelected(true);
-                btnStartStop.setText("Stop");
+                btnStartStop.setText("停止");
             }
         } else {
             mainService.stop();
             btnStartStop.setSelected(false);
-            btnStartStop.setText("Start");
+            btnStartStop.setText("开始");
         }
     }
 

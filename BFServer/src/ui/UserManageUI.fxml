@@ -21,13 +21,13 @@
                     <Insets bottom="5.0"/>
                 </VBox.margin>
                 <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#onDeleteAction"
-                        text="Delete">
+                        text="删除">
                     <HBox.margin>
                         <Insets right="10.0"/>
                     </HBox.margin>
                 </Button>
                 <Button fx:id="btnReset" disable="true" mnemonicParsing="false" onAction="#onResetAction"
-                        text="Reset Password"/>
+                        text="重置密码"/>
             </HBox>
             <Separator prefWidth="200.0"/>
             <HBox alignment="TOP_RIGHT">
@@ -45,25 +45,25 @@
                     <HBox.margin>
                         <Insets right="5.0"/>
                     </HBox.margin>
-                    <TextField fx:id="inputUsername" promptText="Username">
+                    <TextField fx:id="inputUsername" promptText="用户名">
                         <GridPane.margin>
                             <Insets right="2.0"/>
                         </GridPane.margin>
                     </TextField>
-                    <PasswordField fx:id="inputPassword" promptText="Password" GridPane.columnIndex="1">
+                    <PasswordField fx:id="inputPassword" promptText="密码" GridPane.columnIndex="1">
                         <GridPane.margin>
                             <Insets left="2.0"/>
                         </GridPane.margin>
                     </PasswordField>
                 </GridPane>
-                <Button mnemonicParsing="false" onAction="#onAddAction" text="Add"/>
+                <Button mnemonicParsing="false" onAction="#onAddAction" text="添加"/>
             </HBox>
             <Separator prefWidth="200.0"/>
             <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0">
                 <VBox.margin>
                     <Insets bottom="10.0" top="5.0"/>
                 </VBox.margin>
-                <Button cancelButton="true" mnemonicParsing="false" onAction="#onCloseAction" text="Close"/>
+                <Button cancelButton="true" mnemonicParsing="false" onAction="#onCloseAction" text="关闭"/>
             </HBox>
         </VBox>
     </bottom>

@@ -17,7 +17,7 @@ public class FileListHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", getClass().getSimpleName(), "New /io/list request with query " + query);
+        LogUtils.log("调试", "文件列表处理程序", "收到新的文件列表请求");
         String sessid = "";
         if (query != null) {
             for (String param : query.split("&")) {

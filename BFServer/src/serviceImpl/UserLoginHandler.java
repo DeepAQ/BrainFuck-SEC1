@@ -16,7 +16,7 @@ public class UserLoginHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", getClass().getSimpleName(), "New /user/login request with query " + query);
+        LogUtils.log("调试", "用户登录处理程序", "收到新的用户登录请求");
         String username = "";
         String pwdhash = "";
         if (query != null) {
@@ -40,23 +40,23 @@ public class UserLoginHandler implements HttpHandler {
             //login success
             String sessionId = UserMgr.newSessionId(username);
             json.key("sessid").value(sessionId);
-            LogUtils.log("D", getClass().getSimpleName(), username + " login successful, sessionId is " + sessionId);
+            LogUtils.log("调试", "用户登录处理程序", username + " 登录成功，会话编码为 " + sessionId);
         } else {
             //login failed
             String errorMsg;
             switch (result) {
                 case UserMgr.RESULT_USER_NOEXIST:
-                    errorMsg = "User does not exist";
+                    errorMsg = "用户不存在";
                     break;
                 case UserMgr.RESULT_PASSWORD_INCORRECT:
-                    errorMsg = "Password incorrect";
+                    errorMsg = "密码不正确";
                     break;
                 default:
-                    errorMsg = "Server error";
+                    errorMsg = "服务器错误";
                     break;
             }
             json.key("errmsg").value(errorMsg);
-            LogUtils.log("D", getClass().getSimpleName(), username + " login failed: " + errorMsg);
+            LogUtils.log("调试", "用户登录处理程序", username + " 登录失败：" + errorMsg);
         }
         json.endObject();
         byte[] response = json.toString().getBytes();

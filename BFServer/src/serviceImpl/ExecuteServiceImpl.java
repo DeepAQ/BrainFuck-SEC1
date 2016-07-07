@@ -34,7 +34,7 @@ public class ExecuteServiceImpl implements ExecuteService {
 
     void step() throws Exception {
         if (codePtr >= code.length()) {
-            throw new Exception("The program has ended");
+            throw new Exception("程序已结束运行");
         }
         switch (code.charAt(codePtr)) {
             case '>':
@@ -87,7 +87,7 @@ public class ExecuteServiceImpl implements ExecuteService {
         while (codePtr < code.length()) {
             step();
             if (System.currentTimeMillis() - startTime > 10000) {
-                throw new Exception("Timeout");
+                throw new Exception("运行超时");
             }
         }
     }
@@ -102,7 +102,7 @@ public class ExecuteServiceImpl implements ExecuteService {
             this.resume();
             return output;
         } catch (Exception e) {
-            return "Error: " + e.getLocalizedMessage();
+            return "错误：" + e.getLocalizedMessage();
         }
 	}
 }

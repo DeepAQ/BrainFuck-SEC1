@@ -16,7 +16,7 @@ public class SplashUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("BrainFuck IDE");
+        this.setTitle("操脑集成开发环境");
         this.initStyle(StageStyle.TRANSPARENT);
     }
 

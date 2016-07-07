@@ -28,10 +28,10 @@ public class MainUI extends Stage {
         Parent root = loader.load();
         this.scene = new Scene(root, 1024, 600);
         this.setScene(this.scene);
-        this.setTitle("BrainFuck IDE");
+        this.setTitle("操脑集成开发环境");
         this.getIcons().add(new Image(getClass().getResourceAsStream("assets/StageIcon.png")));
         if (!SessionMgr.username.isEmpty()) {
-            menuUser.setText("Logged in as: " + SessionMgr.username);
+            menuUser.setText("当前用户：" + SessionMgr.username);
         }
 
         this.setOnCloseRequest(event -> {
@@ -176,7 +176,7 @@ public class MainUI extends Stage {
                 break;
             case "styleDeepDark":
                 scene.getStylesheets().add(getClass().getResource("assets/deepdark.css").toString());
-                System.out.println("Fantasy!");
+                System.out.println("幻想乡！");
                 break;
         }
     }
@@ -240,7 +240,7 @@ public class MainUI extends Stage {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
-                Dialogs.showError("An error occured, please reopen the IDE.");
+                Dialogs.showError("一个意外发生了，请重新打开集成开发环境。");
                 Platform.exit();
             }
         }
@@ -250,7 +250,7 @@ public class MainUI extends Stage {
     protected void onUserRefreshAction(ActionEvent t) {
         try {
             SessionMgr.refreshSession();
-            Dialogs.showInfo("Refresh success");
+            Dialogs.showInfo("刷新成功");
         } catch (Exception e) {
             Dialogs.showError(e.getLocalizedMessage());
         }

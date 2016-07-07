@@ -11,7 +11,7 @@
     </TextArea>
     <SplitPane dividerPositions="0.5">
         <TabPane tabClosingPolicy="UNAVAILABLE">
-            <Tab text="Input">
+            <Tab text="输入">
                 <TextArea fx:id="textInput">
                     <font>
                         <Font name="Consolas" size="14.0"/>
@@ -20,7 +20,7 @@
             </Tab>
         </TabPane>
         <TabPane tabClosingPolicy="UNAVAILABLE">
-            <Tab text="Output">
+            <Tab text="输出">
                 <TextArea fx:id="textOutput" editable="false">
                     <font>
                         <Font name="Consolas" size="14.0"/>

@@ -28,7 +28,7 @@ class DebugUI extends Stage {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         this.setScene(scene);
-        this.setTitle("Debugger");
+        this.setTitle("调试器");
         this.initModality(Modality.APPLICATION_MODAL);
 
         scene.getStylesheets().clear();
@@ -94,7 +94,7 @@ class DebugUI extends Stage {
         if (jsonObj.has("memptr") && jsonObj.has("memory")) {
             int ptr = jsonObj.getInt("memptr");
             JSONArray memory = jsonObj.getJSONArray("memory");
-            String memoryText = "  Addr\tValue\n";
+            String memoryText = "  地址\t 值\n";
             for (int i = 0; i < memory.length(); i++) {
                 if (i == ptr) {
                     memoryText = memoryText + "-> ";
@@ -128,7 +128,7 @@ class DebugUI extends Stage {
             btnResume.setDisable(false);
             btnStop.setDisable(false);
         } catch (Exception e) {
-            Dialogs.showError("Debug session cannot start:\n" + e.getLocalizedMessage());
+            Dialogs.showError("调试会话启动失败：\n" + e.getLocalizedMessage());
         }
     }
 
@@ -138,7 +138,7 @@ class DebugUI extends Stage {
             status = SessionMgr.debug("step", "", "");
             updateStatus();
         } catch (Exception e) {
-            Dialogs.showError("Debug session error:\n" + e.getLocalizedMessage());
+            Dialogs.showError("调试会话错误：\n" + e.getLocalizedMessage());
             disableButton();
         }
     }
@@ -149,7 +149,7 @@ class DebugUI extends Stage {
             status = SessionMgr.debug("resume", "", "");
             updateStatus();
         } catch (Exception e) {
-            Dialogs.showError("Debug session error:\n" + e.getLocalizedMessage());
+            Dialogs.showError("调试会话错误：\n" + e.getLocalizedMessage());
         }
         disableButton();
     }
@@ -159,7 +159,7 @@ class DebugUI extends Stage {
         try {
             status = SessionMgr.debug("stop", "", "");
         } catch (Exception e) {
-            Dialogs.showError("Debug session error:\n" + e.getLocalizedMessage());
+            Dialogs.showError("调试会话错误：\n" + e.getLocalizedMessage());
         }
         disableButton();
     }

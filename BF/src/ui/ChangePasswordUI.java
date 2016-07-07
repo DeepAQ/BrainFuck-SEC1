@@ -23,7 +23,7 @@ class ChangePasswordUI extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         this.setScene(new Scene(root));
-        this.setTitle("Login");
+        this.setTitle("登录");
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);
@@ -42,12 +42,12 @@ class ChangePasswordUI extends Stage {
         String newPassword2 = inputNewPassword2.getText();
         if (oldPassword.isEmpty() || newPassword.isEmpty() || newPassword2.isEmpty()) return;
         if (!newPassword.equals(newPassword2)) {
-            Dialogs.showError("New passwords does not match!");
+            Dialogs.showError("两次输入的新密码不相同！");
             return;
         }
         try {
             SessionMgr.changePassword(oldPassword, newPassword);
-            Dialogs.showInfo("Password changed");
+            Dialogs.showInfo("密码已更改");
             this.close();
         } catch (Exception e) {
             Dialogs.showError(e.getLocalizedMessage());

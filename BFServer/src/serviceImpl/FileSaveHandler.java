@@ -19,7 +19,7 @@ public class FileSaveHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String query = httpExchange.getRequestURI().getQuery();
-        LogUtils.log("D", getClass().getSimpleName(), "New /io/save request with query " + query);
+        LogUtils.log("调试", "文件保存处理程序", "收到新的保存文件请求");
         String sessid = "";
         String code = "";
         String filename = "";
@@ -52,7 +52,7 @@ public class FileSaveHandler implements HttpHandler {
         json.object();
         try {
             if (filename.matches(".*[\\\\/:*?\"<>|.].*")) {
-                throw new Exception("Filename cannot contain one of these characters: <,>,/,\\,|,:,\",*,?,.");
+                throw new Exception("文件名不能包含以下字符：<,>,/,\\,|,:,\",*,?,.");
             }
             String version = new SimpleDateFormat("yyMMdd-HHmmss").format(new Date());
             String path = "objects/" + username + "/" + filename;
@@ -70,7 +70,7 @@ public class FileSaveHandler implements HttpHandler {
             writer.close();
             json.key("result").value(0);
             json.key("version").value(version);
-            LogUtils.log("D", getClass().getSimpleName(), "Wrote to file " + path + "/" + version + ".bf");
+            LogUtils.log("D", getClass().getSimpleName(), "写入文件 " + path + "/" + version + ".bf");
         } catch (Exception e) {
             json.key("result").value(-1);
             json.key("errmsg").value(e.getLocalizedMessage());
